@@ -55,7 +55,6 @@ class ForecastsClient:
 
         client = Silurian(
             api_key="YOUR_API_KEY",
-            base_url="https://yourhost.com/path/to/api",
         )
         client.forecasts.create_daily(
             latitude=1.1,
@@ -133,7 +132,6 @@ class ForecastsClient:
 
         client = Silurian(
             api_key="YOUR_API_KEY",
-            base_url="https://yourhost.com/path/to/api",
         )
         client.forecasts.create_hourly(
             latitude=1.1,
@@ -218,7 +216,6 @@ class AsyncForecastsClient:
 
         client = AsyncSilurian(
             api_key="YOUR_API_KEY",
-            base_url="https://yourhost.com/path/to/api",
         )
 
 
@@ -304,7 +301,6 @@ class AsyncForecastsClient:
 
         client = AsyncSilurian(
             api_key="YOUR_API_KEY",
-            base_url="https://yourhost.com/path/to/api",
         )
 
 

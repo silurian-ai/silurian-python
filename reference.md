@@ -31,7 +31,6 @@ from silurian import Silurian
 
 client = Silurian(
     api_key="YOUR_API_KEY",
-    base_url="https://yourhost.com/path/to/api",
 )
 client.forecasts.create_daily(
     latitude=1.1,
@@ -127,7 +126,6 @@ from silurian import Silurian
 
 client = Silurian(
     api_key="YOUR_API_KEY",
-    base_url="https://yourhost.com/path/to/api",
 )
 client.forecasts.create_hourly(
     latitude=1.1,

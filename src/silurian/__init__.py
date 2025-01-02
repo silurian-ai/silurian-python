@@ -14,6 +14,7 @@ from .types import (
 from .errors import UnprocessableEntityError
 from . import forecasts
 from .client import AsyncSilurian, Silurian
+from .environment import SilurianEnvironment
 from .version import __version__
 
 __all__ = [
@@ -24,6 +25,7 @@ __all__ = [
     "HourlyWeatherResponse",
     "HttpValidationError",
     "Silurian",
+    "SilurianEnvironment",
     "Timezone",
     "Units",
     "UnprocessableEntityError",
