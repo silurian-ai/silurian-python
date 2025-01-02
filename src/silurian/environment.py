@@ -4,4 +4,4 @@ import enum
 
 
 class SilurianEnvironment(enum.Enum):
-    PRODUCTION = "https://earth.weather.silurian.ai"
+    PRODUCTION = "https://earth.weather.silurian.ai/api/v1"
