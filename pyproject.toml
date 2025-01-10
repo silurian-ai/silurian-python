@@ -1,6 +1,9 @@
+[project]
+name = "silurian"
+
 [tool.poetry]
-name = "silurian-ai"
-version = "0.0.1-alpha3"
+name = "silurian"
+version = "0.0.1-alpha4"
 description = ""
 readme = "README.md"
 authors = []
@@ -28,7 +31,7 @@ packages = [
 ]
 
 [project.urls]
-Repository = 'https://github.com/fern-demo/silurian-python'
+Repository = 'https://github.com/silurian-ai/silurian-python'
 
 [tool.poetry.dependencies]
 python = "^3.8"

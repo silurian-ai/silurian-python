@@ -3,34 +3,44 @@
 from .types import (
     DailyConditions,
     DailyWeatherResponse,
+    DailyWeatherResponseUnits,
     HourlyConditions,
     HourlyWeatherResponse,
+    HourlyWeatherResponseUnits,
     HttpValidationError,
+    ImperialUnits,
+    MetricUnits,
+    PrecipitationType,
     Timezone,
     Units,
     ValidationError,
     ValidationErrorLocItem,
 )
 from .errors import UnprocessableEntityError
-from . import forecasts
-from .client import AsyncSilurian, Silurian
-from .environment import SilurianEnvironment
+from . import weather
+from .client import AsyncEarth, Earth
+from .environment import EarthEnvironment
 from .version import __version__
 
 __all__ = [
-    "AsyncSilurian",
+    "AsyncEarth",
     "DailyConditions",
     "DailyWeatherResponse",
+    "DailyWeatherResponseUnits",
+    "Earth",
+    "EarthEnvironment",
     "HourlyConditions",
     "HourlyWeatherResponse",
+    "HourlyWeatherResponseUnits",
     "HttpValidationError",
-    "Silurian",
-    "SilurianEnvironment",
+    "ImperialUnits",
+    "MetricUnits",
+    "PrecipitationType",
     "Timezone",
     "Units",
     "UnprocessableEntityError",
     "ValidationError",
     "ValidationErrorLocItem",
     "__version__",
-    "forecasts",
+    "weather",
 ]

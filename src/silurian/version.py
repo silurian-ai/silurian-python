@@ -1,3 +1,3 @@
 from importlib import metadata
 
-__version__ = metadata.version("silurian-ai")
+__version__ = metadata.version("silurian")

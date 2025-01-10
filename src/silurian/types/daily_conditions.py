@@ -2,6 +2,7 @@
 
 from ..core.pydantic_utilities import UniversalBaseModel
 import typing
+from .precipitation_type import PrecipitationType
 import typing_extensions
 from ..core.serialization import FieldMetadata
 from ..core.pydantic_utilities import IS_PYDANTIC_V2
@@ -13,6 +14,8 @@ class DailyConditions(UniversalBaseModel):
     temperature: typing.Optional[float] = None
     dewpoint_temperature: typing.Optional[float] = None
     precipitation_accumulation: typing.Optional[float] = None
+    precipitation_type: typing.Optional[PrecipitationType] = None
+    snowfall: typing.Optional[float] = None
     wind_speed: typing.Optional[float] = None
     wind_direction: typing.Optional[float] = None
     pressure: typing.Optional[float] = None

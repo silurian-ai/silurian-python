@@ -1,6 +1,6 @@
 # Reference
-## Forecasts
-<details><summary><code>client.forecasts.<a href="src/silurian/forecasts/client.py">create_daily</a>(...)</code></summary>
+## Weather Forecast
+<details><summary><code>client.weather.forecast.<a href="src/silurian/weather/forecast/client.py">daily</a>(...)</code></summary>
 <dl>
 <dd>
 
@@ -27,14 +27,109 @@ Get daily weather forecast for a specific location
 <dd>
 
 ```python
-from silurian import Silurian
+from silurian import Earth
 
-client = Silurian(
+client = Earth(
     api_key="YOUR_API_KEY",
 )
-client.forecasts.create_daily(
-    latitude=1.1,
-    longitude=1.1,
+client.weather.forecast.daily(
+    latitude=47.6061,
+    longitude=-122.3328,
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**latitude:** `float` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**longitude:** `float` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**timezone:** `typing.Optional[typing.Literal["local"]]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**units:** `typing.Optional[Units]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.weather.forecast.<a href="src/silurian/weather/forecast/client.py">hourly</a>(...)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get hourly weather forecast for a specific location
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from silurian import Earth
+
+client = Earth(
+    api_key="YOUR_API_KEY",
+)
+client.weather.forecast.hourly(
+    latitude=47.6061,
+    longitude=-122.3328,
 )
 
 ```
@@ -95,7 +190,8 @@ client.forecasts.create_daily(
 </dl>
 </details>
 
-<details><summary><code>client.forecasts.<a href="src/silurian/forecasts/client.py">create_hourly</a>(...)</code></summary>
+## Weather Past Forecast
+<details><summary><code>client.weather.past.forecast.<a href="src/silurian/weather/past/forecast/client.py">daily</a>(...)</code></summary>
 <dl>
 <dd>
 
@@ -107,7 +203,7 @@ client.forecasts.create_daily(
 <dl>
 <dd>
 
-Get hourly weather forecast for a specific location
+Get daily weather forecast for a specific location and time
 </dd>
 </dl>
 </dd>
@@ -122,14 +218,19 @@ Get hourly weather forecast for a specific location
 <dd>
 
 ```python
-from silurian import Silurian
+import datetime
 
-client = Silurian(
+from silurian import Earth
+
+client = Earth(
     api_key="YOUR_API_KEY",
 )
-client.forecasts.create_hourly(
-    latitude=1.1,
-    longitude=1.1,
+client.weather.past.forecast.daily(
+    latitude=47.6061,
+    longitude=-122.3328,
+    time=datetime.datetime.fromisoformat(
+        "2024-01-01 00:00:00+00:00",
+    ),
 )
 
 ```
@@ -155,6 +256,122 @@ client.forecasts.create_hourly(
 <dd>
 
 **longitude:** `float` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**time:** `dt.datetime` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**timezone:** `typing.Optional[Timezone]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**units:** `typing.Optional[Units]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.weather.past.forecast.<a href="src/silurian/weather/past/forecast/client.py">hourly</a>(...)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get hourly weather forecast for a specific location and time
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+import datetime
+
+from silurian import Earth
+
+client = Earth(
+    api_key="YOUR_API_KEY",
+)
+client.weather.past.forecast.hourly(
+    latitude=47.6061,
+    longitude=-122.3328,
+    time=datetime.datetime.fromisoformat(
+        "2024-01-01 00:00:00+00:00",
+    ),
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**latitude:** `float` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**longitude:** `float` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**time:** `dt.datetime` 
     
 </dd>
 </dl>

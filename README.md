@@ -1,14 +1,14 @@
 # Silurian Python Library
 
-[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Ffern-demo%2Fsilurian-python)
-[![pypi](https://img.shields.io/pypi/v/silurian-ai)](https://pypi.python.org/pypi/silurian-ai)
+[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fsilurian-ai%2Fsilurian-python)
+[![pypi](https://img.shields.io/pypi/v/silurian)](https://pypi.python.org/pypi/silurian)
 
 The Silurian Python library provides convenient access to the Silurian API from Python.
 
 ## Installation
 
 ```sh
-pip install silurian-ai
+pip install silurian
 ```
 
 ## Reference
@@ -20,14 +20,14 @@ A full reference for this library is available [here](./reference.md).
 Instantiate and use the client with the following:
 
 ```python
-from silurian import Silurian
+from silurian import Earth
 
-client = Silurian(
+client = Earth(
     api_key="YOUR_API_KEY",
 )
-client.forecasts.create_daily(
-    latitude=1.1,
-    longitude=1.1,
+client.weather.forecast.daily(
+    latitude=47.6061,
+    longitude=-122.3328,
 )
 ```
 
@@ -38,17 +38,17 @@ The SDK also exports an `async` client so that you can make non-blocking calls t
 ```python
 import asyncio
 
-from silurian import AsyncSilurian
+from silurian import AsyncEarth
 
-client = AsyncSilurian(
+client = AsyncEarth(
     api_key="YOUR_API_KEY",
 )
 
 
 async def main() -> None:
-    await client.forecasts.create_daily(
-        latitude=1.1,
-        longitude=1.1,
+    await client.weather.forecast.daily(
+        latitude=47.6061,
+        longitude=-122.3328,
     )
 
 
@@ -64,7 +64,7 @@ will be thrown.
 from silurian.core.api_error import ApiError
 
 try:
-    client.forecasts.create_daily(...)
+    client.weather.forecast.daily(...)
 except ApiError as e:
     print(e.status_code)
     print(e.body)
@@ -87,7 +87,7 @@ A request is deemed retriable when any of the following HTTP status codes is ret
 Use the `max_retries` request option to configure this behavior.
 
 ```python
-client.forecasts.create_daily(..., request_options={
+client.weather.forecast.daily(..., request_options={
     "max_retries": 1
 })
 ```
@@ -98,16 +98,16 @@ The SDK defaults to a 60 second timeout. You can configure this with a timeout o
 
 ```python
 
-from silurian import Silurian
+from silurian import Earth
 
-client = Silurian(
+client = Earth(
     ...,
     timeout=20.0,
 )
 
 
 # Override timeout for a specific method
-client.forecasts.create_daily(..., request_options={
+client.weather.forecast.daily(..., request_options={
     "timeout_in_seconds": 1
 })
 ```
@@ -118,9 +118,9 @@ You can override the `httpx` client to customize it for your use-case. Some comm
 and transports.
 ```python
 import httpx
-from silurian import Silurian
+from silurian import Earth
 
-client = Silurian(
+client = Earth(
     ...,
     httpx_client=httpx.Client(
         proxies="http://my.test.proxy.example.com",

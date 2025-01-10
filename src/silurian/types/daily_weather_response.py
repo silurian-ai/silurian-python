@@ -2,7 +2,7 @@
 
 from ..core.pydantic_utilities import UniversalBaseModel
 import typing
-from .units import Units
+from .daily_weather_response_units import DailyWeatherResponseUnits
 from .daily_conditions import DailyConditions
 from ..core.pydantic_utilities import IS_PYDANTIC_V2
 import pydantic
@@ -14,7 +14,7 @@ class DailyWeatherResponse(UniversalBaseModel):
     timezone: str
     utc_offset: int
     elevation: typing.Optional[int] = None
-    units: Units
+    units: DailyWeatherResponseUnits
     daily: typing.List[DailyConditions]
 
     if IS_PYDANTIC_V2:
