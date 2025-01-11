@@ -10,22 +10,22 @@ API_KEY_ENV = "SILURIAN_EARTH_API_KEY"
     reason=f"Skipping live API tests. {API_KEY_ENV} environment variable not set"
 )
 def test_sync_client() -> None:
-    api_key = os.getenv(API_KEY_ENV)
+    api_key = os.environ[API_KEY_ENV] 
     client = Earth(
         api_key=api_key
     )
     assert isinstance(client, Earth)
-    response = client.weather.forecast.daily(
+    response_daily = client.weather.forecast.daily(
         latitude=47.6061,
         longitude=-122.3328
     )
-    assert response is not None
+    assert response_daily is not None
 
-    response = client.weather.forecast.hourly(
+    response_hourly = client.weather.forecast.hourly(
         latitude=47.6061,
         longitude=-122.3328
     )
-    assert response is not None
+    assert response_hourly is not None
 
 @pytest.mark.skipif(
     not os.getenv(API_KEY_ENV),
@@ -33,7 +33,7 @@ def test_sync_client() -> None:
 )
 @pytest.mark.asyncio
 async def test_weather_forecast_async_daily() -> None:
-    api_key = os.getenv(API_KEY_ENV)
+    api_key = os.environ[API_KEY_ENV] 
     client = AsyncEarth(api_key=api_key)
     
     # Using Seattle coordinates as test data
@@ -49,7 +49,7 @@ async def test_weather_forecast_async_daily() -> None:
 )
 @pytest.mark.asyncio
 async def test_weather_forecast_async_hourly() -> None:
-    api_key = os.getenv(API_KEY_ENV)
+    api_key = os.environ[API_KEY_ENV] 
     client = AsyncEarth(api_key=api_key)
     
     # Using Seattle coordinates as test data
