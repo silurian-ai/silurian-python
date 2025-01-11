@@ -1,7 +1,60 @@
+import os
+
 import pytest
+from silurian import AsyncEarth, Earth
 
+API_KEY_ENV = "SILURIAN_EARTH_API_KEY"
 
-# Get started with writing tests with pytest at https://docs.pytest.org
-@pytest.mark.skip(reason="Unimplemented")
-def test_client() -> None:
-    assert True == True
+@pytest.mark.skipif(
+    not os.getenv(API_KEY_ENV),
+    reason=f"Skipping live API tests. {API_KEY_ENV} environment variable not set"
+)
+def test_sync_client() -> None:
+    api_key = os.getenv(API_KEY_ENV)
+    client = Earth(
+        api_key=api_key
+    )
+    assert isinstance(client, Earth)
+    response = client.weather.forecast.daily(
+        latitude=47.6061,
+        longitude=-122.3328
+    )
+    assert response is not None
+
+    response = client.weather.forecast.hourly(
+        latitude=47.6061,
+        longitude=-122.3328
+    )
+    assert response is not None
+
+@pytest.mark.skipif(
+    not os.getenv(API_KEY_ENV),
+    reason=f"Skipping live API tests. {API_KEY_ENV} environment variable not set"
+)
+@pytest.mark.asyncio
+async def test_weather_forecast_async_daily() -> None:
+    api_key = os.getenv(API_KEY_ENV)
+    client = AsyncEarth(api_key=api_key)
+    
+    # Using Seattle coordinates as test data
+    response = await client.weather.forecast.daily(
+        latitude=47.6061,
+        longitude=-122.3328
+    )
+    assert response is not None
+
+@pytest.mark.skipif(
+    not os.getenv(API_KEY_ENV),
+    reason=f"Skipping live API tests. {API_KEY_ENV} environment variable not set"
+)
+@pytest.mark.asyncio
+async def test_weather_forecast_async_hourly() -> None:
+    api_key = os.getenv(API_KEY_ENV)
+    client = AsyncEarth(api_key=api_key)
+    
+    # Using Seattle coordinates as test data
+    response = await client.weather.forecast.hourly(
+        latitude=47.6061,
+        longitude=-122.3328
+    )
+    assert response is not None    
