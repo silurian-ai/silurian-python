@@ -11,13 +11,20 @@ import pydantic
 class MetricUnits(UniversalBaseModel):
     elevation: typing.Optional[str] = None
     temperature: typing.Optional[str] = None
-    dewpoint_temperature: typing.Optional[str] = None
     precipitation_accumulation: typing.Optional[str] = None
-    snowfall: typing.Optional[str] = None
+    precipitation_probability: typing.Optional[str] = None
+    snowfall_accumulation: typing.Optional[str] = None
+    cloud_cover: typing.Optional[str] = None
+    humidity: typing.Optional[str] = None
     wind_speed: typing.Optional[str] = None
-    wind_speed_100_m: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="wind_speed_100m")] = None
+    wind_direction: typing.Optional[str] = None
+    dewpoint_temperature: typing.Optional[str] = None
     pressure: typing.Optional[str] = None
-    solar_radiation: typing.Optional[str] = None
+    downward_solar_radiation: typing.Optional[str] = None
+    wind_speed_100_m: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="wind_speed_100m")] = None
+    wind_direction_100_m: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="wind_direction_100m")
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -12,12 +12,15 @@ import pydantic
 class DailyConditions(UniversalBaseModel):
     timestamp: str
     temperature: typing.Optional[float] = None
-    dewpoint_temperature: typing.Optional[float] = None
     precipitation_accumulation: typing.Optional[float] = None
+    precipitation_probability: typing.Optional[int] = None
     precipitation_type: typing.Optional[PrecipitationType] = None
-    snowfall: typing.Optional[float] = None
+    snowfall_accumulation: typing.Optional[float] = None
+    cloud_cover: typing.Optional[int] = None
+    humidity: typing.Optional[int] = None
     wind_speed: typing.Optional[float] = None
     wind_direction: typing.Optional[float] = None
+    dewpoint_temperature: typing.Optional[float] = None
     pressure: typing.Optional[float] = None
     downward_solar_radiation: typing.Optional[float] = None
     wind_speed_100_m: typing_extensions.Annotated[typing.Optional[float], FieldMetadata(alias="wind_speed_100m")] = None

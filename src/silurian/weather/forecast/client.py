@@ -30,6 +30,8 @@ class ForecastClient:
     ) -> DailyWeatherResponse:
         """
         Get daily weather forecast for a specific location
+        Only allowing local timezone aggregations for now since
+        it is unclear how exactly users will understand "UTC".
 
         Parameters
         ----------
@@ -189,6 +191,8 @@ class AsyncForecastClient:
     ) -> DailyWeatherResponse:
         """
         Get daily weather forecast for a specific location
+        Only allowing local timezone aggregations for now since
+        it is unclear how exactly users will understand "UTC".
 
         Parameters
         ----------
