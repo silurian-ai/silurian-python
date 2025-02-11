@@ -14,6 +14,7 @@ from .timezone import Timezone
 from .units import Units
 from .validation_error import ValidationError
 from .validation_error_loc_item import ValidationErrorLocItem
+from .weather_code import WeatherCode
 
 __all__ = [
     "DailyConditions",
@@ -30,4 +31,5 @@ __all__ = [
     "Units",
     "ValidationError",
     "ValidationErrorLocItem",
+    "WeatherCode",
 ]

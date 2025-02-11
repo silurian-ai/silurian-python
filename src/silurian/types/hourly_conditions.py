@@ -6,6 +6,7 @@ import typing
 from .precipitation_type import PrecipitationType
 import typing_extensions
 from ..core.serialization import FieldMetadata
+from .weather_code import WeatherCode
 from ..core.pydantic_utilities import IS_PYDANTIC_V2
 import pydantic
 
@@ -28,6 +29,8 @@ class HourlyConditions(UniversalBaseModel):
     wind_direction_100_m: typing_extensions.Annotated[
         typing.Optional[float], FieldMetadata(alias="wind_direction_100m")
     ] = None
+    feels_like_temperature: typing.Optional[float] = None
+    weather_code: typing.Optional[WeatherCode] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

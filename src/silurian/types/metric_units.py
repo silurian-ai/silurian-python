@@ -11,6 +11,7 @@ import pydantic
 class MetricUnits(UniversalBaseModel):
     elevation: typing.Optional[str] = None
     temperature: typing.Optional[str] = None
+    feels_like_temperature: typing.Optional[str] = None
     precipitation_accumulation: typing.Optional[str] = None
     precipitation_probability: typing.Optional[str] = None
     snowfall_accumulation: typing.Optional[str] = None

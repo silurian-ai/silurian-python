@@ -15,6 +15,7 @@ from .types import (
     Units,
     ValidationError,
     ValidationErrorLocItem,
+    WeatherCode,
 )
 from .errors import UnprocessableEntityError
 from . import weather
@@ -41,6 +42,7 @@ __all__ = [
     "UnprocessableEntityError",
     "ValidationError",
     "ValidationErrorLocItem",
+    "WeatherCode",
     "__version__",
     "weather",
 ]
