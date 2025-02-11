@@ -20,19 +20,14 @@ A full reference for this library is available [here](./reference.md).
 Instantiate and use the client with the following:
 
 ```python
-import datetime
-
 from silurian import Earth
 
 client = Earth(
     api_key="YOUR_API_KEY",
 )
-client.get_daily_forecast_past_forecast_daily_get(
+client.weather.forecast.daily(
     latitude=47.6061,
     longitude=-122.3328,
-    time=datetime.datetime.fromisoformat(
-        "2024-01-01 00:00:00+00:00",
-    ),
 )
 ```
 
@@ -42,7 +37,6 @@ The SDK also exports an `async` client so that you can make non-blocking calls t
 
 ```python
 import asyncio
-import datetime
 
 from silurian import AsyncEarth
 
@@ -52,12 +46,9 @@ client = AsyncEarth(
 
 
 async def main() -> None:
-    await client.get_daily_forecast_past_forecast_daily_get(
+    await client.weather.forecast.daily(
         latitude=47.6061,
         longitude=-122.3328,
-        time=datetime.datetime.fromisoformat(
-            "2024-01-01 00:00:00+00:00",
-        ),
     )
 
 
@@ -73,7 +64,7 @@ will be thrown.
 from silurian.core.api_error import ApiError
 
 try:
-    client.get_daily_forecast_past_forecast_daily_get(...)
+    client.weather.forecast.daily(...)
 except ApiError as e:
     print(e.status_code)
     print(e.body)
@@ -96,7 +87,7 @@ A request is deemed retriable when any of the following HTTP status codes is ret
 Use the `max_retries` request option to configure this behavior.
 
 ```python
-client.get_daily_forecast_past_forecast_daily_get(..., request_options={
+client.weather.forecast.daily(..., request_options={
     "max_retries": 1
 })
 ```
@@ -116,7 +107,7 @@ client = Earth(
 
 
 # Override timeout for a specific method
-client.get_daily_forecast_past_forecast_daily_get(..., request_options={
+client.weather.forecast.daily(..., request_options={
     "timeout_in_seconds": 1
 })
 ```
