@@ -31,6 +31,9 @@ class HourlyConditions(UniversalBaseModel):
     ] = None
     feels_like_temperature: typing.Optional[float] = None
     weather_code: typing.Optional[WeatherCode] = None
+    global_horizontal_irradiation: typing.Optional[float] = None
+    direct_normal_irradiation: typing.Optional[float] = None
+    diffuse_horizontal_irradiation: typing.Optional[float] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

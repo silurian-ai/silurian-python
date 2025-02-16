@@ -30,6 +30,9 @@ class DailyConditions(UniversalBaseModel):
     ] = None
     feels_like_temperature: typing.Optional[float] = None
     weather_code: typing.Optional[WeatherCode] = None
+    global_horizontal_irradiation: typing.Optional[float] = None
+    direct_normal_irradiation: typing.Optional[float] = None
+    diffuse_horizontal_irradiation: typing.Optional[float] = None
     max_temperature: typing.Optional[float] = None
     min_temperature: typing.Optional[float] = None
 

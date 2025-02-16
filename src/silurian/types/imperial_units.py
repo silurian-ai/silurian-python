@@ -26,6 +26,9 @@ class ImperialUnits(UniversalBaseModel):
     wind_direction_100_m: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="wind_direction_100m")
     ] = None
+    global_horizontal_irradiation: typing.Optional[str] = None
+    direct_normal_irradiation: typing.Optional[str] = None
+    diffuse_horizontal_irradiation: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
