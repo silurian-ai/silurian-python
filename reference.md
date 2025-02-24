@@ -405,14 +405,6 @@ client.weather.past.forecast.hourly(
 <dl>
 <dd>
 
-**include_past:** `typing.Optional[bool]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
     
 </dd>

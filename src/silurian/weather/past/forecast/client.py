@@ -115,7 +115,6 @@ class ForecastClient:
         time: dt.datetime,
         timezone: typing.Optional[Timezone] = None,
         units: typing.Optional[Units] = None,
-        include_past: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HourlyWeatherResponse:
         """
@@ -132,8 +131,6 @@ class ForecastClient:
         timezone : typing.Optional[Timezone]
 
         units : typing.Optional[Units]
-
-        include_past : typing.Optional[bool]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -169,7 +166,6 @@ class ForecastClient:
                 "time": serialize_datetime(time),
                 "timezone": timezone,
                 "units": units,
-                "include_past": include_past,
             },
             request_options=request_options,
         )
@@ -303,7 +299,6 @@ class AsyncForecastClient:
         time: dt.datetime,
         timezone: typing.Optional[Timezone] = None,
         units: typing.Optional[Units] = None,
-        include_past: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HourlyWeatherResponse:
         """
@@ -320,8 +315,6 @@ class AsyncForecastClient:
         timezone : typing.Optional[Timezone]
 
         units : typing.Optional[Units]
-
-        include_past : typing.Optional[bool]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -364,7 +357,6 @@ class AsyncForecastClient:
                 "time": serialize_datetime(time),
                 "timezone": timezone,
                 "units": units,
-                "include_past": include_past,
             },
             request_options=request_options,
         )
