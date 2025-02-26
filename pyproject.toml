@@ -54,6 +54,7 @@ asyncio_mode = "auto"
 
 [tool.mypy]
 plugins = ["pydantic.mypy"]
+exclude = ["examples"]
 
 [tool.ruff]
 line-length = 120
