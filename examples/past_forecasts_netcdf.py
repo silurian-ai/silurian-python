@@ -17,6 +17,16 @@ MAX_CONCURRENT_REQUESTS = 200  # Maximum concurrent API requests
 RATE_LIMIT_PER_MINUTE = 1200   # API rate limit (requests per minute)
 CHECKPOINT_FILE = "status.json"
 
+######
+# Takes a csv of locations as input
+#
+# locations.csv:
+#
+# latitude, longitude
+# 32.45, -122.45
+#
+# Usage: python past_forecasts_netcdf.py --csv locations.csv --start-date 2023-01-01 --end-date 2023-12-31 --output file.nc
+
 # Global state for request tracking
 class RequestTracker:
     def __init__(self):
