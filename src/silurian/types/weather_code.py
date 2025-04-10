@@ -3,14 +3,6 @@
 import typing
 
 WeatherCode = typing.Union[
-    typing.Literal[
-        "clear-night",
-        "clear-day",
-        "partly-cloudy-day",
-        "partly-cloudy-night",
-        "cloudy",
-        "rain",
-        "snow",
-    ],
+    typing.Literal["clear-night", "clear-day", "partly-cloudy-day", "partly-cloudy-night", "cloudy", "rain", "snow"],
     typing.Any,
 ]

@@ -3,9 +3,9 @@
 from .daily_conditions import DailyConditions
 from .daily_weather_response import DailyWeatherResponse
 from .daily_weather_response_units import DailyWeatherResponseUnits
+from .gftus_base_units import GftusBaseUnits
 from .gftus_hourly_conditions import GftusHourlyConditions
 from .gftus_hourly_weather_response import GftusHourlyWeatherResponse
-from .gftus_hourly_weather_response_units import GftusHourlyWeatherResponseUnits
 from .hourly_conditions import HourlyConditions
 from .hourly_weather_response import HourlyWeatherResponse
 from .hourly_weather_response_units import HourlyWeatherResponseUnits
@@ -23,9 +23,9 @@ __all__ = [
     "DailyConditions",
     "DailyWeatherResponse",
     "DailyWeatherResponseUnits",
+    "GftusBaseUnits",
     "GftusHourlyConditions",
     "GftusHourlyWeatherResponse",
-    "GftusHourlyWeatherResponseUnits",
     "HourlyConditions",
     "HourlyWeatherResponse",
     "HourlyWeatherResponseUnits",

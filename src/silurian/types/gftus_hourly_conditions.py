@@ -14,6 +14,7 @@ class GftusHourlyConditions(UniversalBaseModel):
     temperature: typing.Optional[float] = None
     humidity: typing.Optional[int] = None
     wind_speed: typing.Optional[float] = None
+    wind_gust: typing.Optional[float] = None
     wind_direction: typing.Optional[float] = None
     wind_speed_80_m: typing_extensions.Annotated[typing.Optional[float], FieldMetadata(alias="wind_speed_80m")] = None
     wind_direction_80_m: typing_extensions.Annotated[
@@ -22,6 +23,9 @@ class GftusHourlyConditions(UniversalBaseModel):
     dewpoint_temperature: typing.Optional[float] = None
     feels_like_temperature: typing.Optional[float] = None
     pressure: typing.Optional[float] = None
+    precipitation_accumulation: typing.Optional[float] = None
+    precipitation_probability: typing.Optional[int] = None
+    cloud_cover: typing.Optional[int] = None
     downward_solar_radiation: typing.Optional[float] = None
 
     if IS_PYDANTIC_V2:

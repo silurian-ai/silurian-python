@@ -3,7 +3,7 @@
 from ..core.pydantic_utilities import UniversalBaseModel
 import datetime as dt
 import typing
-from .gftus_hourly_weather_response_units import GftusHourlyWeatherResponseUnits
+from .gftus_base_units import GftusBaseUnits
 from .gftus_hourly_conditions import GftusHourlyConditions
 from ..core.pydantic_utilities import IS_PYDANTIC_V2
 import pydantic
@@ -16,7 +16,7 @@ class GftusHourlyWeatherResponse(UniversalBaseModel):
     timezone: str
     utc_offset: int
     elevation: typing.Optional[int] = None
-    units: GftusHourlyWeatherResponseUnits
+    units: GftusBaseUnits
     hourly: typing.List[GftusHourlyConditions]
 
     if IS_PYDANTIC_V2:
