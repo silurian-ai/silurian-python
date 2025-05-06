@@ -1,99 +1,4 @@
 # Reference
-<details><summary><code>client.<a href="src/silurian/client.py">get_hourly_forecast_experimental_extended_get</a>(...)</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get hourly weather forecast for a specific location and time
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```python
-from silurian import Earth
-
-client = Earth(
-    api_key="YOUR_API_KEY",
-)
-client.get_hourly_forecast_experimental_extended_get(
-    latitude=47.6061,
-    longitude=-122.3328,
-)
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**latitude:** `float` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**longitude:** `float` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**timezone:** `typing.Optional[Timezone]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**units:** `typing.Optional[Units]` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## Cyclone
 <details><summary><code>client.cyclone.<a href="src/silurian/cyclone/client.py">query_forecasts</a>(...)</code></summary>
 <dl>
@@ -549,6 +454,102 @@ client.weather.forecast.hourly(
 <dd>
 
 **include_past:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Weather Experimental
+<details><summary><code>client.weather.experimental.<a href="src/silurian/weather/experimental/client.py">extended</a>(...)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get hourly weather forecast for a specific location and time
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from silurian import Earth
+
+client = Earth(
+    api_key="YOUR_API_KEY",
+)
+client.weather.experimental.extended(
+    latitude=47.6061,
+    longitude=-122.3328,
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**latitude:** `float` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**longitude:** `float` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**timezone:** `typing.Optional[Timezone]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**units:** `typing.Optional[Units]` 
     
 </dd>
 </dl>

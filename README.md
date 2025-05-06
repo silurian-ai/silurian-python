@@ -25,10 +25,7 @@ from silurian import Earth
 client = Earth(
     api_key="YOUR_API_KEY",
 )
-client.get_hourly_forecast_experimental_extended_get(
-    latitude=47.6061,
-    longitude=-122.3328,
-)
+client.cyclone.query_forecasts()
 ```
 
 ## Async Client
@@ -46,10 +43,7 @@ client = AsyncEarth(
 
 
 async def main() -> None:
-    await client.get_hourly_forecast_experimental_extended_get(
-        latitude=47.6061,
-        longitude=-122.3328,
-    )
+    await client.cyclone.query_forecasts()
 
 
 asyncio.run(main())
@@ -64,7 +58,7 @@ will be thrown.
 from silurian.core.api_error import ApiError
 
 try:
-    client.get_hourly_forecast_experimental_extended_get(...)
+    client.cyclone.query_forecasts(...)
 except ApiError as e:
     print(e.status_code)
     print(e.body)
@@ -87,7 +81,7 @@ A request is deemed retryable when any of the following HTTP status codes is ret
 Use the `max_retries` request option to configure this behavior.
 
 ```python
-client.get_hourly_forecast_experimental_extended_get(..., request_options={
+client.cyclone.query_forecasts(..., request_options={
     "max_retries": 1
 })
 ```
@@ -107,7 +101,7 @@ client = Earth(
 
 
 # Override timeout for a specific method
-client.get_hourly_forecast_experimental_extended_get(..., request_options={
+client.cyclone.query_forecasts(..., request_options={
     "timeout_in_seconds": 1
 })
 ```

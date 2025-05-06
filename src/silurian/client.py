@@ -4,15 +4,9 @@ import typing
 from .environment import EarthEnvironment
 import httpx
 from .core.client_wrapper import SyncClientWrapper
-from .raw_client import RawEarth
 from .cyclone.client import CycloneClient
 from .weather.client import WeatherClient
-from .types.timezone import Timezone
-from .types.units import Units
-from .core.request_options import RequestOptions
-from .types.hourly_weather_response import HourlyWeatherResponse
 from .core.client_wrapper import AsyncClientWrapper
-from .raw_client import AsyncRawEarth
 from .cyclone.client import AsyncCycloneClient
 from .weather.client import AsyncWeatherClient
 
@@ -77,67 +71,8 @@ class Earth:
             else httpx.Client(timeout=_defaulted_timeout),
             timeout=_defaulted_timeout,
         )
-        self._raw_client = RawEarth(client_wrapper=self._client_wrapper)
         self.cyclone = CycloneClient(client_wrapper=self._client_wrapper)
         self.weather = WeatherClient(client_wrapper=self._client_wrapper)
-
-    @property
-    def with_raw_response(self) -> RawEarth:
-        """
-        Retrieves a raw implementation of this client that returns raw responses.
-
-        Returns
-        -------
-        RawEarth
-        """
-        return self._raw_client
-
-    def get_hourly_forecast_experimental_extended_get(
-        self,
-        *,
-        latitude: float,
-        longitude: float,
-        timezone: typing.Optional[Timezone] = None,
-        units: typing.Optional[Units] = None,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> HourlyWeatherResponse:
-        """
-        Get hourly weather forecast for a specific location and time
-
-        Parameters
-        ----------
-        latitude : float
-
-        longitude : float
-
-        timezone : typing.Optional[Timezone]
-
-        units : typing.Optional[Units]
-
-        request_options : typing.Optional[RequestOptions]
-            Request-specific configuration.
-
-        Returns
-        -------
-        HourlyWeatherResponse
-            Successful Response
-
-        Examples
-        --------
-        from silurian import Earth
-
-        client = Earth(
-            api_key="YOUR_API_KEY",
-        )
-        client.get_hourly_forecast_experimental_extended_get(
-            latitude=47.6061,
-            longitude=-122.3328,
-        )
-        """
-        response = self._raw_client.get_hourly_forecast_experimental_extended_get(
-            latitude=latitude, longitude=longitude, timezone=timezone, units=units, request_options=request_options
-        )
-        return response.data
 
 
 class AsyncEarth:
@@ -200,75 +135,8 @@ class AsyncEarth:
             else httpx.AsyncClient(timeout=_defaulted_timeout),
             timeout=_defaulted_timeout,
         )
-        self._raw_client = AsyncRawEarth(client_wrapper=self._client_wrapper)
         self.cyclone = AsyncCycloneClient(client_wrapper=self._client_wrapper)
         self.weather = AsyncWeatherClient(client_wrapper=self._client_wrapper)
-
-    @property
-    def with_raw_response(self) -> AsyncRawEarth:
-        """
-        Retrieves a raw implementation of this client that returns raw responses.
-
-        Returns
-        -------
-        AsyncRawEarth
-        """
-        return self._raw_client
-
-    async def get_hourly_forecast_experimental_extended_get(
-        self,
-        *,
-        latitude: float,
-        longitude: float,
-        timezone: typing.Optional[Timezone] = None,
-        units: typing.Optional[Units] = None,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> HourlyWeatherResponse:
-        """
-        Get hourly weather forecast for a specific location and time
-
-        Parameters
-        ----------
-        latitude : float
-
-        longitude : float
-
-        timezone : typing.Optional[Timezone]
-
-        units : typing.Optional[Units]
-
-        request_options : typing.Optional[RequestOptions]
-            Request-specific configuration.
-
-        Returns
-        -------
-        HourlyWeatherResponse
-            Successful Response
-
-        Examples
-        --------
-        import asyncio
-
-        from silurian import AsyncEarth
-
-        client = AsyncEarth(
-            api_key="YOUR_API_KEY",
-        )
-
-
-        async def main() -> None:
-            await client.get_hourly_forecast_experimental_extended_get(
-                latitude=47.6061,
-                longitude=-122.3328,
-            )
-
-
-        asyncio.run(main())
-        """
-        response = await self._raw_client.get_hourly_forecast_experimental_extended_get(
-            latitude=latitude, longitude=longitude, timezone=timezone, units=units, request_options=request_options
-        )
-        return response.data
 
 
 def _get_base_url(*, base_url: typing.Optional[str] = None, environment: EarthEnvironment) -> str:

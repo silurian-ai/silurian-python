@@ -3,6 +3,11 @@
 from ...core.client_wrapper import SyncClientWrapper
 from .raw_client import RawExperimentalClient
 from .regional.client import RegionalClient
+import typing
+from ...types.timezone import Timezone
+from ...types.units import Units
+from ...core.request_options import RequestOptions
+from ...types.hourly_weather_response import HourlyWeatherResponse
 from ...core.client_wrapper import AsyncClientWrapper
 from .raw_client import AsyncRawExperimentalClient
 from .regional.client import AsyncRegionalClient
@@ -24,6 +29,53 @@ class ExperimentalClient:
         """
         return self._raw_client
 
+    def extended(
+        self,
+        *,
+        latitude: float,
+        longitude: float,
+        timezone: typing.Optional[Timezone] = None,
+        units: typing.Optional[Units] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HourlyWeatherResponse:
+        """
+        Get hourly weather forecast for a specific location and time
+
+        Parameters
+        ----------
+        latitude : float
+
+        longitude : float
+
+        timezone : typing.Optional[Timezone]
+
+        units : typing.Optional[Units]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HourlyWeatherResponse
+            Successful Response
+
+        Examples
+        --------
+        from silurian import Earth
+
+        client = Earth(
+            api_key="YOUR_API_KEY",
+        )
+        client.weather.experimental.extended(
+            latitude=47.6061,
+            longitude=-122.3328,
+        )
+        """
+        response = self._raw_client.extended(
+            latitude=latitude, longitude=longitude, timezone=timezone, units=units, request_options=request_options
+        )
+        return response.data
+
 
 class AsyncExperimentalClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -40,3 +92,58 @@ class AsyncExperimentalClient:
         AsyncRawExperimentalClient
         """
         return self._raw_client
+
+    async def extended(
+        self,
+        *,
+        latitude: float,
+        longitude: float,
+        timezone: typing.Optional[Timezone] = None,
+        units: typing.Optional[Units] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HourlyWeatherResponse:
+        """
+        Get hourly weather forecast for a specific location and time
+
+        Parameters
+        ----------
+        latitude : float
+
+        longitude : float
+
+        timezone : typing.Optional[Timezone]
+
+        units : typing.Optional[Units]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HourlyWeatherResponse
+            Successful Response
+
+        Examples
+        --------
+        import asyncio
+
+        from silurian import AsyncEarth
+
+        client = AsyncEarth(
+            api_key="YOUR_API_KEY",
+        )
+
+
+        async def main() -> None:
+            await client.weather.experimental.extended(
+                latitude=47.6061,
+                longitude=-122.3328,
+            )
+
+
+        asyncio.run(main())
+        """
+        response = await self._raw_client.extended(
+            latitude=latitude, longitude=longitude, timezone=timezone, units=units, request_options=request_options
+        )
+        return response.data
