@@ -4,16 +4,13 @@ import typing
 
 import pydantic
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
-from .multi_point_coordinates_item import MultiPointCoordinatesItem
+from .forecast_row import ForecastRow
 
 
-class MultiPoint(UniversalBaseModel):
-    """
-    MultiPoint Model
-    """
-
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
-    coordinates: typing.List[MultiPointCoordinatesItem]
+class ForecastTable(UniversalBaseModel):
+    schema_version: typing.Optional[str] = None
+    units: typing.Optional[typing.Dict[str, typing.Optional[str]]] = None
+    data: typing.List[ForecastRow]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
