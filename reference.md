@@ -1,4 +1,272 @@
 # Reference
+## Cyclones
+<details><summary><code>client.cyclones.<a href="src/silurian/cyclones/client.py">query_forecasts</a>(...)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Query the available cyclone forecasts for a particular time
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from silurian import Earth
+client = Earth(api_key="YOUR_API_KEY", )
+client.cyclones.query_forecasts()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**time:** `typing.Optional[dt.datetime]` — *Default value: (current time) - Default time zone: UTC*
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**min_storm_category:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**model:** `typing.Optional[ModelName]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.cyclones.<a href="src/silurian/cyclones/client.py">get_forecast_track</a>(...)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get cyclone tracks in GeoJSON (MF-GeoJSON) format
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from silurian import Earth
+client = Earth(api_key="YOUR_API_KEY", )
+client.cyclones.get_forecast_track(storm_id='storm_id', )
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**storm_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**time:** `typing.Optional[dt.datetime]` — *Default value: (current time) - Default time zone: UTC*
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**max_lead_time:** `typing.Optional[str]` — *Value must be > P0D*
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**model:** `typing.Optional[ModelName]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.cyclones.<a href="src/silurian/cyclones/client.py">get_forecast_cone</a>(...)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get cyclone forecast cone in GeoJSON format
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from silurian import Earth
+client = Earth(api_key="YOUR_API_KEY", )
+client.cyclones.get_forecast_cone(storm_id='storm_id', )
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**storm_id:** `str` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**time:** `typing.Optional[dt.datetime]` — *Default value: (current time) - Default time zone: UTC*
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**max_lead_time:** `typing.Optional[str]` — *Value must be > P0D*
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**smooth_cone:** `typing.Optional[bool]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**model:** `typing.Optional[ModelName]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Cyclones Forecasts
 <details><summary><code>client.cyclones.forecasts.<a href="src/silurian/cyclones/forecasts/client.py">list</a>(...)</code></summary>
 <dl>
@@ -142,6 +410,14 @@ client.cyclones.forecasts.track(storm_id='storm_id', )
 <dl>
 <dd>
 
+**max_lead_time:** `typing.Optional[str]` — *Value must be > P0D*
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **model:** `typing.Optional[ModelName]` 
     
 </dd>
@@ -223,7 +499,7 @@ client.cyclones.forecasts.cone(storm_id='storm_id', )
 <dl>
 <dd>
 
-**lead_time:** `typing.Optional[str]` 
+**max_lead_time:** `typing.Optional[str]` — *Value must be > P0D*
     
 </dd>
 </dl>

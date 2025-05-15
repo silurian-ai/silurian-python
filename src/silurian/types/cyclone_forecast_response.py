@@ -11,12 +11,12 @@ from .geo_location import GeoLocation
 class CycloneForecastResponse(UniversalBaseModel):
     storm_id: str
     storm_name: str
-    type: str
+    type: typing.Optional[str] = None
     category: int
     position: GeoLocation
     forecast_time: dt.datetime
     forecast_source_info: str
-    last_updated: dt.datetime
+    forecast_last_updated: dt.datetime
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

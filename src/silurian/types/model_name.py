@@ -2,4 +2,4 @@
 
 import typing
 
-ModelName = typing.Literal["OFCL"]
+ModelName = typing.Union[typing.Literal["OFCL", "GFTC"], typing.Any]

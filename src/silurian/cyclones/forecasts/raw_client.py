@@ -51,7 +51,7 @@ class RawForecastsClient:
             Successful Response
         """
         _response = self._client_wrapper.httpx_client.request(
-            "cyclone/forecasts",
+            "cyclones/forecasts",
             method="GET",
             params={
                 "time": serialize_datetime(time) if time is not None else None,
@@ -91,6 +91,7 @@ class RawForecastsClient:
         storm_id: str,
         *,
         time: typing.Optional[dt.datetime] = None,
+        max_lead_time: typing.Optional[str] = None,
         model: typing.Optional[ModelName] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[FeatureCollection]:
@@ -104,6 +105,9 @@ class RawForecastsClient:
         time : typing.Optional[dt.datetime]
             *Default value: (current time) - Default time zone: UTC*
 
+        max_lead_time : typing.Optional[str]
+            *Value must be > P0D*
+
         model : typing.Optional[ModelName]
 
         request_options : typing.Optional[RequestOptions]
@@ -115,10 +119,11 @@ class RawForecastsClient:
             Successful Response
         """
         _response = self._client_wrapper.httpx_client.request(
-            f"cyclone/forecasts/{jsonable_encoder(storm_id)}/track",
+            f"cyclones/forecasts/{jsonable_encoder(storm_id)}/track",
             method="GET",
             params={
                 "time": serialize_datetime(time) if time is not None else None,
+                "max_lead_time": max_lead_time,
                 "model": model,
             },
             request_options=request_options,
@@ -154,7 +159,7 @@ class RawForecastsClient:
         storm_id: str,
         *,
         time: typing.Optional[dt.datetime] = None,
-        lead_time: typing.Optional[str] = None,
+        max_lead_time: typing.Optional[str] = None,
         smooth_cone: typing.Optional[bool] = None,
         model: typing.Optional[ModelName] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -169,7 +174,8 @@ class RawForecastsClient:
         time : typing.Optional[dt.datetime]
             *Default value: (current time) - Default time zone: UTC*
 
-        lead_time : typing.Optional[str]
+        max_lead_time : typing.Optional[str]
+            *Value must be > P0D*
 
         smooth_cone : typing.Optional[bool]
 
@@ -184,11 +190,11 @@ class RawForecastsClient:
             Successful Response
         """
         _response = self._client_wrapper.httpx_client.request(
-            f"cyclone/forecasts/{jsonable_encoder(storm_id)}/cone",
+            f"cyclones/forecasts/{jsonable_encoder(storm_id)}/cone",
             method="GET",
             params={
                 "time": serialize_datetime(time) if time is not None else None,
-                "lead_time": lead_time,
+                "max_lead_time": max_lead_time,
                 "smooth_cone": smooth_cone,
                 "model": model,
             },
@@ -254,7 +260,7 @@ class AsyncRawForecastsClient:
             Successful Response
         """
         _response = await self._client_wrapper.httpx_client.request(
-            "cyclone/forecasts",
+            "cyclones/forecasts",
             method="GET",
             params={
                 "time": serialize_datetime(time) if time is not None else None,
@@ -294,6 +300,7 @@ class AsyncRawForecastsClient:
         storm_id: str,
         *,
         time: typing.Optional[dt.datetime] = None,
+        max_lead_time: typing.Optional[str] = None,
         model: typing.Optional[ModelName] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[FeatureCollection]:
@@ -307,6 +314,9 @@ class AsyncRawForecastsClient:
         time : typing.Optional[dt.datetime]
             *Default value: (current time) - Default time zone: UTC*
 
+        max_lead_time : typing.Optional[str]
+            *Value must be > P0D*
+
         model : typing.Optional[ModelName]
 
         request_options : typing.Optional[RequestOptions]
@@ -318,10 +328,11 @@ class AsyncRawForecastsClient:
             Successful Response
         """
         _response = await self._client_wrapper.httpx_client.request(
-            f"cyclone/forecasts/{jsonable_encoder(storm_id)}/track",
+            f"cyclones/forecasts/{jsonable_encoder(storm_id)}/track",
             method="GET",
             params={
                 "time": serialize_datetime(time) if time is not None else None,
+                "max_lead_time": max_lead_time,
                 "model": model,
             },
             request_options=request_options,
@@ -357,7 +368,7 @@ class AsyncRawForecastsClient:
         storm_id: str,
         *,
         time: typing.Optional[dt.datetime] = None,
-        lead_time: typing.Optional[str] = None,
+        max_lead_time: typing.Optional[str] = None,
         smooth_cone: typing.Optional[bool] = None,
         model: typing.Optional[ModelName] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -372,7 +383,8 @@ class AsyncRawForecastsClient:
         time : typing.Optional[dt.datetime]
             *Default value: (current time) - Default time zone: UTC*
 
-        lead_time : typing.Optional[str]
+        max_lead_time : typing.Optional[str]
+            *Value must be > P0D*
 
         smooth_cone : typing.Optional[bool]
 
@@ -387,11 +399,11 @@ class AsyncRawForecastsClient:
             Successful Response
         """
         _response = await self._client_wrapper.httpx_client.request(
-            f"cyclone/forecasts/{jsonable_encoder(storm_id)}/cone",
+            f"cyclones/forecasts/{jsonable_encoder(storm_id)}/cone",
             method="GET",
             params={
                 "time": serialize_datetime(time) if time is not None else None,
-                "lead_time": lead_time,
+                "max_lead_time": max_lead_time,
                 "smooth_cone": smooth_cone,
                 "model": model,
             },

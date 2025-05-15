@@ -70,6 +70,7 @@ class ForecastsClient:
         storm_id: str,
         *,
         time: typing.Optional[dt.datetime] = None,
+        max_lead_time: typing.Optional[str] = None,
         model: typing.Optional[ModelName] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> FeatureCollection:
@@ -82,6 +83,9 @@ class ForecastsClient:
 
         time : typing.Optional[dt.datetime]
             *Default value: (current time) - Default time zone: UTC*
+
+        max_lead_time : typing.Optional[str]
+            *Value must be > P0D*
 
         model : typing.Optional[ModelName]
 
@@ -99,7 +103,9 @@ class ForecastsClient:
         client = Earth(api_key="YOUR_API_KEY", )
         client.cyclones.forecasts.track(storm_id='storm_id', )
         """
-        _response = self._raw_client.track(storm_id, time=time, model=model, request_options=request_options)
+        _response = self._raw_client.track(
+            storm_id, time=time, max_lead_time=max_lead_time, model=model, request_options=request_options
+        )
         return _response.data
 
     def cone(
@@ -107,7 +113,7 @@ class ForecastsClient:
         storm_id: str,
         *,
         time: typing.Optional[dt.datetime] = None,
-        lead_time: typing.Optional[str] = None,
+        max_lead_time: typing.Optional[str] = None,
         smooth_cone: typing.Optional[bool] = None,
         model: typing.Optional[ModelName] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -122,7 +128,8 @@ class ForecastsClient:
         time : typing.Optional[dt.datetime]
             *Default value: (current time) - Default time zone: UTC*
 
-        lead_time : typing.Optional[str]
+        max_lead_time : typing.Optional[str]
+            *Value must be > P0D*
 
         smooth_cone : typing.Optional[bool]
 
@@ -145,7 +152,7 @@ class ForecastsClient:
         _response = self._raw_client.cone(
             storm_id,
             time=time,
-            lead_time=lead_time,
+            max_lead_time=max_lead_time,
             smooth_cone=smooth_cone,
             model=model,
             request_options=request_options,
@@ -215,6 +222,7 @@ class AsyncForecastsClient:
         storm_id: str,
         *,
         time: typing.Optional[dt.datetime] = None,
+        max_lead_time: typing.Optional[str] = None,
         model: typing.Optional[ModelName] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> FeatureCollection:
@@ -227,6 +235,9 @@ class AsyncForecastsClient:
 
         time : typing.Optional[dt.datetime]
             *Default value: (current time) - Default time zone: UTC*
+
+        max_lead_time : typing.Optional[str]
+            *Value must be > P0D*
 
         model : typing.Optional[ModelName]
 
@@ -247,7 +258,9 @@ class AsyncForecastsClient:
             await client.cyclones.forecasts.track(storm_id='storm_id', )
         asyncio.run(main())
         """
-        _response = await self._raw_client.track(storm_id, time=time, model=model, request_options=request_options)
+        _response = await self._raw_client.track(
+            storm_id, time=time, max_lead_time=max_lead_time, model=model, request_options=request_options
+        )
         return _response.data
 
     async def cone(
@@ -255,7 +268,7 @@ class AsyncForecastsClient:
         storm_id: str,
         *,
         time: typing.Optional[dt.datetime] = None,
-        lead_time: typing.Optional[str] = None,
+        max_lead_time: typing.Optional[str] = None,
         smooth_cone: typing.Optional[bool] = None,
         model: typing.Optional[ModelName] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -270,7 +283,8 @@ class AsyncForecastsClient:
         time : typing.Optional[dt.datetime]
             *Default value: (current time) - Default time zone: UTC*
 
-        lead_time : typing.Optional[str]
+        max_lead_time : typing.Optional[str]
+            *Value must be > P0D*
 
         smooth_cone : typing.Optional[bool]
 
@@ -296,7 +310,7 @@ class AsyncForecastsClient:
         _response = await self._raw_client.cone(
             storm_id,
             time=time,
-            lead_time=lead_time,
+            max_lead_time=max_lead_time,
             smooth_cone=smooth_cone,
             model=model,
             request_options=request_options,
