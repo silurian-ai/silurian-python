@@ -21,6 +21,8 @@ class Earth:
     environment : EarthEnvironment
         The environment to use for requests from the client. from .environment import EarthEnvironment
 
+
+
         Defaults to EarthEnvironment.PRODUCTION
 
 
@@ -38,7 +40,10 @@ class Earth:
     Examples
     --------
     from silurian import Earth
-    client = Earth(api_key="YOUR_API_KEY", )
+
+    client = Earth(
+        api_key="YOUR_API_KEY",
+    )
     """
 
     def __init__(
@@ -80,6 +85,8 @@ class AsyncEarth:
     environment : EarthEnvironment
         The environment to use for requests from the client. from .environment import EarthEnvironment
 
+
+
         Defaults to EarthEnvironment.PRODUCTION
 
 
@@ -97,7 +104,10 @@ class AsyncEarth:
     Examples
     --------
     from silurian import AsyncEarth
-    client = AsyncEarth(api_key="YOUR_API_KEY", )
+
+    client = AsyncEarth(
+        api_key="YOUR_API_KEY",
+    )
     """
 
     def __init__(

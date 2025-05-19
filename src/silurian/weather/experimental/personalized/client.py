@@ -40,7 +40,10 @@ class PersonalizedClient:
         Examples
         --------
         from silurian import Earth
-        client = Earth(api_key="YOUR_API_KEY", )
+
+        client = Earth(
+            api_key="YOUR_API_KEY",
+        )
         client.weather.experimental.personalized.total_energies()
         """
         _response = self._raw_client.total_energies(request_options=request_options)
@@ -78,11 +81,19 @@ class AsyncPersonalizedClient:
 
         Examples
         --------
-        from silurian import AsyncEarth
         import asyncio
-        client = AsyncEarth(api_key="YOUR_API_KEY", )
+
+        from silurian import AsyncEarth
+
+        client = AsyncEarth(
+            api_key="YOUR_API_KEY",
+        )
+
+
         async def main() -> None:
             await client.weather.experimental.personalized.total_energies()
+
+
         asyncio.run(main())
         """
         _response = await self._raw_client.total_energies(request_options=request_options)

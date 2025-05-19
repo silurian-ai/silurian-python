@@ -58,8 +58,14 @@ class RegionalClient:
         Examples
         --------
         from silurian import Earth
-        client = Earth(api_key="YOUR_API_KEY", )
-        client.weather.experimental.regional.usa(latitude=47.6061, longitude=-122.3328, )
+
+        client = Earth(
+            api_key="YOUR_API_KEY",
+        )
+        client.weather.experimental.regional.usa(
+            latitude=47.6061,
+            longitude=-122.3328,
+        )
         """
         _response = self._raw_client.usa(
             latitude=latitude, longitude=longitude, timezone=timezone, units=units, request_options=request_options
@@ -114,11 +120,22 @@ class AsyncRegionalClient:
 
         Examples
         --------
-        from silurian import AsyncEarth
         import asyncio
-        client = AsyncEarth(api_key="YOUR_API_KEY", )
+
+        from silurian import AsyncEarth
+
+        client = AsyncEarth(
+            api_key="YOUR_API_KEY",
+        )
+
+
         async def main() -> None:
-            await client.weather.experimental.regional.usa(latitude=47.6061, longitude=-122.3328, )
+            await client.weather.experimental.regional.usa(
+                latitude=47.6061,
+                longitude=-122.3328,
+            )
+
+
         asyncio.run(main())
         """
         _response = await self._raw_client.usa(

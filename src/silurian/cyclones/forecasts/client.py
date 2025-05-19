@@ -57,7 +57,10 @@ class ForecastsClient:
         Examples
         --------
         from silurian import Earth
-        client = Earth(api_key="YOUR_API_KEY", )
+
+        client = Earth(
+            api_key="YOUR_API_KEY",
+        )
         client.cyclones.forecasts.list()
         """
         _response = self._raw_client.list(
@@ -100,8 +103,13 @@ class ForecastsClient:
         Examples
         --------
         from silurian import Earth
-        client = Earth(api_key="YOUR_API_KEY", )
-        client.cyclones.forecasts.track(storm_id='storm_id', )
+
+        client = Earth(
+            api_key="YOUR_API_KEY",
+        )
+        client.cyclones.forecasts.track(
+            storm_id="storm_id",
+        )
         """
         _response = self._raw_client.track(
             storm_id, time=time, max_lead_time=max_lead_time, model=model, request_options=request_options
@@ -146,8 +154,13 @@ class ForecastsClient:
         Examples
         --------
         from silurian import Earth
-        client = Earth(api_key="YOUR_API_KEY", )
-        client.cyclones.forecasts.cone(storm_id='storm_id', )
+
+        client = Earth(
+            api_key="YOUR_API_KEY",
+        )
+        client.cyclones.forecasts.cone(
+            storm_id="storm_id",
+        )
         """
         _response = self._raw_client.cone(
             storm_id,
@@ -205,11 +218,19 @@ class AsyncForecastsClient:
 
         Examples
         --------
-        from silurian import AsyncEarth
         import asyncio
-        client = AsyncEarth(api_key="YOUR_API_KEY", )
+
+        from silurian import AsyncEarth
+
+        client = AsyncEarth(
+            api_key="YOUR_API_KEY",
+        )
+
+
         async def main() -> None:
             await client.cyclones.forecasts.list()
+
+
         asyncio.run(main())
         """
         _response = await self._raw_client.list(
@@ -251,11 +272,21 @@ class AsyncForecastsClient:
 
         Examples
         --------
-        from silurian import AsyncEarth
         import asyncio
-        client = AsyncEarth(api_key="YOUR_API_KEY", )
+
+        from silurian import AsyncEarth
+
+        client = AsyncEarth(
+            api_key="YOUR_API_KEY",
+        )
+
+
         async def main() -> None:
-            await client.cyclones.forecasts.track(storm_id='storm_id', )
+            await client.cyclones.forecasts.track(
+                storm_id="storm_id",
+            )
+
+
         asyncio.run(main())
         """
         _response = await self._raw_client.track(
@@ -300,11 +331,21 @@ class AsyncForecastsClient:
 
         Examples
         --------
-        from silurian import AsyncEarth
         import asyncio
-        client = AsyncEarth(api_key="YOUR_API_KEY", )
+
+        from silurian import AsyncEarth
+
+        client = AsyncEarth(
+            api_key="YOUR_API_KEY",
+        )
+
+
         async def main() -> None:
-            await client.cyclones.forecasts.cone(storm_id='storm_id', )
+            await client.cyclones.forecasts.cone(
+                storm_id="storm_id",
+            )
+
+
         asyncio.run(main())
         """
         _response = await self._raw_client.cone(

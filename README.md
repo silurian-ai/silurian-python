@@ -21,8 +21,11 @@ Instantiate and use the client with the following:
 
 ```python
 from silurian import Earth
-client = Earth(api_key="YOUR_API_KEY", )
-client.cyclones.query_forecasts()
+
+client = Earth(
+    api_key="YOUR_API_KEY",
+)
+client.cyclones.forecasts.list()
 ```
 
 ## Async Client
@@ -30,11 +33,19 @@ client.cyclones.query_forecasts()
 The SDK also exports an `async` client so that you can make non-blocking calls to our API.
 
 ```python
-from silurian import AsyncEarth
 import asyncio
-client = AsyncEarth(api_key="YOUR_API_KEY", )
+
+from silurian import AsyncEarth
+
+client = AsyncEarth(
+    api_key="YOUR_API_KEY",
+)
+
+
 async def main() -> None:
-    await client.cyclones.query_forecasts()
+    await client.cyclones.forecasts.list()
+
+
 asyncio.run(main())
 ```
 
@@ -45,8 +56,9 @@ will be thrown.
 
 ```python
 from silurian.core.api_error import ApiError
+
 try:
-    client.cyclones.query_forecasts(...)
+    client.cyclones.forecasts.list(...)
 except ApiError as e:
     print(e.status_code)
     print(e.body)
@@ -61,8 +73,11 @@ The `.with_raw_response` property returns a "raw" client that can be used to acc
 
 ```python
 from silurian import Earth
-client = Earth(..., )
-response = client.cyclones.with_raw_response.query_forecasts(...)
+
+client = Earth(
+    ...,
+)
+response = client.cyclones.forecasts.with_raw_response.list(...)
 print(response.headers)  # access the response headers
 print(response.data)  # access the underlying object
 ```
@@ -82,7 +97,7 @@ A request is deemed retryable when any of the following HTTP status codes is ret
 Use the `max_retries` request option to configure this behavior.
 
 ```python
-client.cyclones.query_forecasts(..., request_options={
+client.cyclones.forecasts.list(..., request_options={
     "max_retries": 1
 })
 ```
@@ -94,10 +109,15 @@ The SDK defaults to a 60 second timeout. You can configure this with a timeout o
 ```python
 
 from silurian import Earth
-client = Earth(..., timeout=20.0, )
+
+client = Earth(
+    ...,
+    timeout=20.0,
+)
+
 
 # Override timeout for a specific method
-client.cyclones.query_forecasts(..., request_options={
+client.cyclones.forecasts.list(..., request_options={
     "timeout_in_seconds": 1
 })
 ```
@@ -108,9 +128,17 @@ You can override the `httpx` client to customize it for your use-case. Some comm
 and transports.
 
 ```python
-from silurian import Earth
 import httpx
-client = Earth(..., httpx_client=httpx.Client(proxies="http://my.test.proxy.example.com", transport=httpx.HTTPTransport(local_address="0.0.0.0"), ))```
+from silurian import Earth
+
+client = Earth(
+    ...,
+    httpx_client=httpx.Client(
+        proxies="http://my.test.proxy.example.com",
+        transport=httpx.HTTPTransport(local_address="0.0.0.0"),
+    ),
+)
+```
 
 ## Contributing
 

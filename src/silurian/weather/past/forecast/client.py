@@ -62,10 +62,20 @@ class ForecastClient:
 
         Examples
         --------
-        from silurian import Earth
         import datetime
-        client = Earth(api_key="YOUR_API_KEY", )
-        client.weather.past.forecast.daily(latitude=47.6061, longitude=-122.3328, time=datetime.datetime.fromisoformat("2024-01-01 00:00:00+00:00", ), )
+
+        from silurian import Earth
+
+        client = Earth(
+            api_key="YOUR_API_KEY",
+        )
+        client.weather.past.forecast.daily(
+            latitude=47.6061,
+            longitude=-122.3328,
+            time=datetime.datetime.fromisoformat(
+                "2024-01-01 00:00:00+00:00",
+            ),
+        )
         """
         _response = self._raw_client.daily(
             latitude=latitude,
@@ -112,10 +122,20 @@ class ForecastClient:
 
         Examples
         --------
-        from silurian import Earth
         import datetime
-        client = Earth(api_key="YOUR_API_KEY", )
-        client.weather.past.forecast.hourly(latitude=47.6061, longitude=-122.3328, time=datetime.datetime.fromisoformat("2024-01-01 00:00:00+00:00", ), )
+
+        from silurian import Earth
+
+        client = Earth(
+            api_key="YOUR_API_KEY",
+        )
+        client.weather.past.forecast.hourly(
+            latitude=47.6061,
+            longitude=-122.3328,
+            time=datetime.datetime.fromisoformat(
+                "2024-01-01 00:00:00+00:00",
+            ),
+        )
         """
         _response = self._raw_client.hourly(
             latitude=latitude,
@@ -178,12 +198,26 @@ class AsyncForecastClient:
 
         Examples
         --------
-        from silurian import AsyncEarth
-        import datetime
         import asyncio
-        client = AsyncEarth(api_key="YOUR_API_KEY", )
+        import datetime
+
+        from silurian import AsyncEarth
+
+        client = AsyncEarth(
+            api_key="YOUR_API_KEY",
+        )
+
+
         async def main() -> None:
-            await client.weather.past.forecast.daily(latitude=47.6061, longitude=-122.3328, time=datetime.datetime.fromisoformat("2024-01-01 00:00:00+00:00", ), )
+            await client.weather.past.forecast.daily(
+                latitude=47.6061,
+                longitude=-122.3328,
+                time=datetime.datetime.fromisoformat(
+                    "2024-01-01 00:00:00+00:00",
+                ),
+            )
+
+
         asyncio.run(main())
         """
         _response = await self._raw_client.daily(
@@ -231,12 +265,26 @@ class AsyncForecastClient:
 
         Examples
         --------
-        from silurian import AsyncEarth
-        import datetime
         import asyncio
-        client = AsyncEarth(api_key="YOUR_API_KEY", )
+        import datetime
+
+        from silurian import AsyncEarth
+
+        client = AsyncEarth(
+            api_key="YOUR_API_KEY",
+        )
+
+
         async def main() -> None:
-            await client.weather.past.forecast.hourly(latitude=47.6061, longitude=-122.3328, time=datetime.datetime.fromisoformat("2024-01-01 00:00:00+00:00", ), )
+            await client.weather.past.forecast.hourly(
+                latitude=47.6061,
+                longitude=-122.3328,
+                time=datetime.datetime.fromisoformat(
+                    "2024-01-01 00:00:00+00:00",
+                ),
+            )
+
+
         asyncio.run(main())
         """
         _response = await self._raw_client.hourly(
