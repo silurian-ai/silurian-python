@@ -32,6 +32,7 @@ packages = [
 
 [project.urls]
 Repository = 'https://github.com/silurian-ai/silurian-python'
+Changelog = "https://github.com/silurian-ai/silurian-python/releases"
 
 [tool.poetry.dependencies]
 python = "^3.8"
