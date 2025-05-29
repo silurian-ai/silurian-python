@@ -2,6 +2,6 @@
 
 # isort: skip_file
 
-from . import personalized, regional
+from . import past, personalized, regional
 
-__all__ = ["personalized", "regional"]
+__all__ = ["past", "personalized", "regional"]
