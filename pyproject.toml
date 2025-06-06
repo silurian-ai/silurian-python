@@ -3,7 +3,7 @@ name = "silurian"
 
 [tool.poetry]
 name = "silurian"
-version = "0.0.15"
+version = "0.0.16"
 description = ""
 readme = "README.md"
 authors = []
