@@ -65,6 +65,8 @@ class RegionalClient:
         client.weather.experimental.regional.usa(
             latitude=47.6061,
             longitude=-122.3328,
+            timezone="local",
+            units="metric",
         )
         """
         _response = self._raw_client.usa(
@@ -133,6 +135,8 @@ class AsyncRegionalClient:
             await client.weather.experimental.regional.usa(
                 latitude=47.6061,
                 longitude=-122.3328,
+                timezone="local",
+                units="metric",
             )
 
 

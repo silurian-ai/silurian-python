@@ -3,7 +3,7 @@
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fsilurian-ai%2Fsilurian-python)
 [![pypi](https://img.shields.io/pypi/v/silurian)](https://pypi.python.org/pypi/silurian)
 
-The Silurian Python library provides convenient access to the Silurian API from Python.
+The Silurian Python library provides convenient access to the Silurian APIs from Python.
 
 ## Installation
 
@@ -20,20 +20,31 @@ A full reference for this library is available [here](https://github.com/siluria
 Instantiate and use the client with the following:
 
 ```python
+import datetime
+
 from silurian import Earth
 
 client = Earth(
     api_key="YOUR_API_KEY",
 )
-client.cyclones.forecasts.list()
+client.weather.past.forecast.hourly(
+    latitude=47.6061,
+    longitude=-122.3328,
+    time=datetime.datetime.fromisoformat(
+        "2024-01-01 00:00:00+00:00",
+    ),
+    timezone="local",
+    units="metric",
+)
 ```
 
 ## Async Client
 
-The SDK also exports an `async` client so that you can make non-blocking calls to our API.
+The SDK also exports an `async` client so that you can make non-blocking calls to our API. Note that if you are constructing an Async httpx client class to pass into this client, use `httpx.AsyncClient()` instead of `httpx.Client()` (e.g. for the `httpx_client` parameter of this client).
 
 ```python
 import asyncio
+import datetime
 
 from silurian import AsyncEarth
 
@@ -43,7 +54,15 @@ client = AsyncEarth(
 
 
 async def main() -> None:
-    await client.cyclones.forecasts.list()
+    await client.weather.past.forecast.hourly(
+        latitude=47.6061,
+        longitude=-122.3328,
+        time=datetime.datetime.fromisoformat(
+            "2024-01-01 00:00:00+00:00",
+        ),
+        timezone="local",
+        units="metric",
+    )
 
 
 asyncio.run(main())
@@ -58,7 +77,7 @@ will be thrown.
 from silurian.core.api_error import ApiError
 
 try:
-    client.cyclones.forecasts.list(...)
+    client.weather.past.forecast.hourly(...)
 except ApiError as e:
     print(e.status_code)
     print(e.body)
@@ -77,7 +96,7 @@ from silurian import Earth
 client = Earth(
     ...,
 )
-response = client.cyclones.forecasts.with_raw_response.list(...)
+response = client.weather.past.forecast.with_raw_response.hourly(...)
 print(response.headers)  # access the response headers
 print(response.data)  # access the underlying object
 ```
@@ -97,7 +116,7 @@ A request is deemed retryable when any of the following HTTP status codes is ret
 Use the `max_retries` request option to configure this behavior.
 
 ```python
-client.cyclones.forecasts.list(..., request_options={
+client.weather.past.forecast.hourly(..., request_options={
     "max_retries": 1
 })
 ```
@@ -117,7 +136,7 @@ client = Earth(
 
 
 # Override timeout for a specific method
-client.cyclones.forecasts.list(..., request_options={
+client.weather.past.forecast.hourly(..., request_options={
     "timeout_in_seconds": 1
 })
 ```
@@ -134,7 +153,7 @@ from silurian import Earth
 client = Earth(
     ...,
     httpx_client=httpx.Client(
-        proxies="http://my.test.proxy.example.com",
+        proxy="http://my.test.proxy.example.com",
         transport=httpx.HTTPTransport(local_address="0.0.0.0"),
     ),
 )

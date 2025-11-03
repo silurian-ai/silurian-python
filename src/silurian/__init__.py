@@ -2,72 +2,162 @@
 
 # isort: skip_file
 
-from .types import (
-    BaseModel,
-    CycloneForecastResponse,
-    DailyConditions,
-    DailyWeatherResponse,
-    DailyWeatherResponseUnits,
-    Feature,
-    FeatureCollection,
-    FeatureGeometry,
-    FeatureGeometry_GeometryCollection,
-    FeatureGeometry_LineString,
-    FeatureGeometry_MultiLineString,
-    FeatureGeometry_MultiPoint,
-    FeatureGeometry_MultiPolygon,
-    FeatureGeometry_Point,
-    FeatureGeometry_Polygon,
-    FeatureId,
-    FeatureProperties,
-    ForecastRow,
-    ForecastTable,
-    GeoLocation,
-    GeometryCollection,
-    GeometryCollectionGeometriesItem,
-    GeometryCollectionGeometriesItem_GeometryCollection,
-    GeometryCollectionGeometriesItem_LineString,
-    GeometryCollectionGeometriesItem_MultiLineString,
-    GeometryCollectionGeometriesItem_MultiPoint,
-    GeometryCollectionGeometriesItem_MultiPolygon,
-    GeometryCollectionGeometriesItem_Point,
-    GeometryCollectionGeometriesItem_Polygon,
-    GftusBaseUnits,
-    GftusHourlyConditions,
-    GftusHourlyWeatherResponse,
-    HourlyConditions,
-    HourlyWeatherResponse,
-    HourlyWeatherResponseUnits,
-    HttpValidationError,
-    ImperialUnits,
-    LineString,
-    LineStringCoordinatesItem,
-    MetricUnits,
-    ModelName,
-    MultiLineString,
-    MultiLineStringCoordinatesItemItem,
-    MultiPoint,
-    MultiPointCoordinatesItem,
-    MultiPolygon,
-    MultiPolygonCoordinatesItemItemItem,
-    Point,
-    PointCoordinates,
-    Polygon,
-    PolygonCoordinatesItemItem,
-    Position2D,
-    Position3D,
-    PrecipitationType,
-    Timezone,
-    Units,
-    ValidationError,
-    ValidationErrorLocItem,
-    WeatherCode,
-)
-from .errors import UnprocessableEntityError
-from . import cyclones, weather
-from .client import AsyncEarth, Earth
-from .environment import EarthEnvironment
-from .version import __version__
+import typing
+from importlib import import_module
+
+if typing.TYPE_CHECKING:
+    from .types import (
+        BaseModel,
+        CycloneForecastResponse,
+        DailyConditions,
+        DailyWeatherResponse,
+        DailyWeatherResponseUnits,
+        Feature,
+        FeatureCollection,
+        FeatureGeometry,
+        FeatureGeometry_GeometryCollection,
+        FeatureGeometry_LineString,
+        FeatureGeometry_MultiLineString,
+        FeatureGeometry_MultiPoint,
+        FeatureGeometry_MultiPolygon,
+        FeatureGeometry_Point,
+        FeatureGeometry_Polygon,
+        FeatureId,
+        FeatureProperties,
+        GeoLocation,
+        GeometryCollection,
+        GeometryCollectionGeometriesItem,
+        GeometryCollectionGeometriesItem_GeometryCollection,
+        GeometryCollectionGeometriesItem_LineString,
+        GeometryCollectionGeometriesItem_MultiLineString,
+        GeometryCollectionGeometriesItem_MultiPoint,
+        GeometryCollectionGeometriesItem_MultiPolygon,
+        GeometryCollectionGeometriesItem_Point,
+        GeometryCollectionGeometriesItem_Polygon,
+        GftusBaseUnits,
+        GftusHourlyConditions,
+        GftusHourlyWeatherResponse,
+        HourlyConditions,
+        HourlyWeatherResponse,
+        HourlyWeatherResponseUnits,
+        HttpValidationError,
+        ImperialUnits,
+        LineString,
+        LineStringCoordinatesItem,
+        MetricUnits,
+        ModelName,
+        MultiLineString,
+        MultiLineStringCoordinatesItemItem,
+        MultiPoint,
+        MultiPointCoordinatesItem,
+        MultiPolygon,
+        MultiPolygonCoordinatesItemItemItem,
+        Point,
+        PointCoordinates,
+        Polygon,
+        PolygonCoordinatesItemItem,
+        Position2D,
+        Position3D,
+        PrecipitationType,
+        Timezone,
+        Units,
+        ValidationError,
+        ValidationErrorLocItem,
+        WeatherCode,
+    )
+    from .errors import UnprocessableEntityError
+    from . import cyclones, weather
+    from .client import AsyncEarth, Earth
+    from .environment import EarthEnvironment
+    from .version import __version__
+_dynamic_imports: typing.Dict[str, str] = {
+    "AsyncEarth": ".client",
+    "BaseModel": ".types",
+    "CycloneForecastResponse": ".types",
+    "DailyConditions": ".types",
+    "DailyWeatherResponse": ".types",
+    "DailyWeatherResponseUnits": ".types",
+    "Earth": ".client",
+    "EarthEnvironment": ".environment",
+    "Feature": ".types",
+    "FeatureCollection": ".types",
+    "FeatureGeometry": ".types",
+    "FeatureGeometry_GeometryCollection": ".types",
+    "FeatureGeometry_LineString": ".types",
+    "FeatureGeometry_MultiLineString": ".types",
+    "FeatureGeometry_MultiPoint": ".types",
+    "FeatureGeometry_MultiPolygon": ".types",
+    "FeatureGeometry_Point": ".types",
+    "FeatureGeometry_Polygon": ".types",
+    "FeatureId": ".types",
+    "FeatureProperties": ".types",
+    "GeoLocation": ".types",
+    "GeometryCollection": ".types",
+    "GeometryCollectionGeometriesItem": ".types",
+    "GeometryCollectionGeometriesItem_GeometryCollection": ".types",
+    "GeometryCollectionGeometriesItem_LineString": ".types",
+    "GeometryCollectionGeometriesItem_MultiLineString": ".types",
+    "GeometryCollectionGeometriesItem_MultiPoint": ".types",
+    "GeometryCollectionGeometriesItem_MultiPolygon": ".types",
+    "GeometryCollectionGeometriesItem_Point": ".types",
+    "GeometryCollectionGeometriesItem_Polygon": ".types",
+    "GftusBaseUnits": ".types",
+    "GftusHourlyConditions": ".types",
+    "GftusHourlyWeatherResponse": ".types",
+    "HourlyConditions": ".types",
+    "HourlyWeatherResponse": ".types",
+    "HourlyWeatherResponseUnits": ".types",
+    "HttpValidationError": ".types",
+    "ImperialUnits": ".types",
+    "LineString": ".types",
+    "LineStringCoordinatesItem": ".types",
+    "MetricUnits": ".types",
+    "ModelName": ".types",
+    "MultiLineString": ".types",
+    "MultiLineStringCoordinatesItemItem": ".types",
+    "MultiPoint": ".types",
+    "MultiPointCoordinatesItem": ".types",
+    "MultiPolygon": ".types",
+    "MultiPolygonCoordinatesItemItemItem": ".types",
+    "Point": ".types",
+    "PointCoordinates": ".types",
+    "Polygon": ".types",
+    "PolygonCoordinatesItemItem": ".types",
+    "Position2D": ".types",
+    "Position3D": ".types",
+    "PrecipitationType": ".types",
+    "Timezone": ".types",
+    "Units": ".types",
+    "UnprocessableEntityError": ".errors",
+    "ValidationError": ".types",
+    "ValidationErrorLocItem": ".types",
+    "WeatherCode": ".types",
+    "__version__": ".version",
+    "cyclones": ".cyclones",
+    "weather": ".weather",
+}
+
+
+def __getattr__(attr_name: str) -> typing.Any:
+    module_name = _dynamic_imports.get(attr_name)
+    if module_name is None:
+        raise AttributeError(f"No {attr_name} found in _dynamic_imports for module name -> {__name__}")
+    try:
+        module = import_module(module_name, __package__)
+        if module_name == f".{attr_name}":
+            return module
+        else:
+            return getattr(module, attr_name)
+    except ImportError as e:
+        raise ImportError(f"Failed to import {attr_name} from {module_name}: {e}") from e
+    except AttributeError as e:
+        raise AttributeError(f"Failed to get {attr_name} from {module_name}: {e}") from e
+
+
+def __dir__():
+    lazy_attrs = list(_dynamic_imports.keys())
+    return sorted(lazy_attrs)
+
 
 __all__ = [
     "AsyncEarth",
@@ -90,8 +180,6 @@ __all__ = [
     "FeatureGeometry_Polygon",
     "FeatureId",
     "FeatureProperties",
-    "ForecastRow",
-    "ForecastTable",
     "GeoLocation",
     "GeometryCollection",
     "GeometryCollectionGeometriesItem",

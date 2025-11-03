@@ -74,6 +74,8 @@ class RegionalClient:
             time=datetime.datetime.fromisoformat(
                 "2024-01-01 00:00:00+00:00",
             ),
+            timezone="local",
+            units="metric",
         )
         """
         _response = self._raw_client.usa(
@@ -154,6 +156,8 @@ class AsyncRegionalClient:
                 time=datetime.datetime.fromisoformat(
                     "2024-01-01 00:00:00+00:00",
                 ),
+                timezone="local",
+                units="metric",
             )
 
 

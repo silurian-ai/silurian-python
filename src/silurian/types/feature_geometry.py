@@ -29,8 +29,7 @@ class FeatureGeometry_GeometryCollection(UniversalBaseModel):
             extra = pydantic.Extra.allow
 
 
-from .geometry_collection import GeometryCollection  # noqa: E402, F401, I001
-from .geometry_collection_geometries_item import GeometryCollectionGeometriesItem  # noqa: E402, F401, I001
+from .geometry_collection_geometries_item import GeometryCollectionGeometriesItem  # noqa: E402, I001
 
 
 class FeatureGeometry_LineString(UniversalBaseModel):

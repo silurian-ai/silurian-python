@@ -6,19 +6,15 @@ from json.decoder import JSONDecodeError
 from ....core.api_error import ApiError
 from ....core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ....core.http_response import AsyncHttpResponse, HttpResponse
-from ....core.pydantic_utilities import parse_obj_as
 from ....core.request_options import RequestOptions
-from ....types.forecast_table import ForecastTable
 
 
 class RawPersonalizedClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def total_energies(self, *, request_options: typing.Optional[RequestOptions] = None) -> HttpResponse[ForecastTable]:
+    def total_energies(self, *, request_options: typing.Optional[RequestOptions] = None) -> HttpResponse[None]:
         """
-        Return asset‑level forecast data as a JSON ForecastTable.
-
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -26,8 +22,7 @@ class RawPersonalizedClient:
 
         Returns
         -------
-        HttpResponse[ForecastTable]
-            Successful Response
+        HttpResponse[None]
         """
         _response = self._client_wrapper.httpx_client.request(
             "experimental/personalized/total-energies",
@@ -36,14 +31,7 @@ class RawPersonalizedClient:
         )
         try:
             if 200 <= _response.status_code < 300:
-                _data = typing.cast(
-                    ForecastTable,
-                    parse_obj_as(
-                        type_=ForecastTable,  # type: ignore
-                        object_=_response.json(),
-                    ),
-                )
-                return HttpResponse(response=_response, data=_data)
+                return HttpResponse(response=_response, data=None)
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
@@ -56,10 +44,8 @@ class AsyncRawPersonalizedClient:
 
     async def total_energies(
         self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[ForecastTable]:
+    ) -> AsyncHttpResponse[None]:
         """
-        Return asset‑level forecast data as a JSON ForecastTable.
-
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -67,8 +53,7 @@ class AsyncRawPersonalizedClient:
 
         Returns
         -------
-        AsyncHttpResponse[ForecastTable]
-            Successful Response
+        AsyncHttpResponse[None]
         """
         _response = await self._client_wrapper.httpx_client.request(
             "experimental/personalized/total-energies",
@@ -77,14 +62,7 @@ class AsyncRawPersonalizedClient:
         )
         try:
             if 200 <= _response.status_code < 300:
-                _data = typing.cast(
-                    ForecastTable,
-                    parse_obj_as(
-                        type_=ForecastTable,  # type: ignore
-                        object_=_response.json(),
-                    ),
-                )
-                return AsyncHttpResponse(response=_response, data=_data)
+                return AsyncHttpResponse(response=_response, data=None)
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)

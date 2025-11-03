@@ -2,69 +2,152 @@
 
 # isort: skip_file
 
-from .base_model import BaseModel
-from .cyclone_forecast_response import CycloneForecastResponse
-from .daily_conditions import DailyConditions
-from .daily_weather_response import DailyWeatherResponse
-from .daily_weather_response_units import DailyWeatherResponseUnits
-from .feature import Feature
-from .feature_collection import FeatureCollection
-from .feature_geometry import (
-    FeatureGeometry,
-    FeatureGeometry_GeometryCollection,
-    FeatureGeometry_LineString,
-    FeatureGeometry_MultiLineString,
-    FeatureGeometry_MultiPoint,
-    FeatureGeometry_MultiPolygon,
-    FeatureGeometry_Point,
-    FeatureGeometry_Polygon,
-)
-from .feature_id import FeatureId
-from .feature_properties import FeatureProperties
-from .forecast_row import ForecastRow
-from .forecast_table import ForecastTable
-from .geo_location import GeoLocation
-from .geometry_collection import GeometryCollection
-from .geometry_collection_geometries_item import (
-    GeometryCollectionGeometriesItem,
-    GeometryCollectionGeometriesItem_GeometryCollection,
-    GeometryCollectionGeometriesItem_LineString,
-    GeometryCollectionGeometriesItem_MultiLineString,
-    GeometryCollectionGeometriesItem_MultiPoint,
-    GeometryCollectionGeometriesItem_MultiPolygon,
-    GeometryCollectionGeometriesItem_Point,
-    GeometryCollectionGeometriesItem_Polygon,
-)
-from .gftus_base_units import GftusBaseUnits
-from .gftus_hourly_conditions import GftusHourlyConditions
-from .gftus_hourly_weather_response import GftusHourlyWeatherResponse
-from .hourly_conditions import HourlyConditions
-from .hourly_weather_response import HourlyWeatherResponse
-from .hourly_weather_response_units import HourlyWeatherResponseUnits
-from .http_validation_error import HttpValidationError
-from .imperial_units import ImperialUnits
-from .line_string import LineString
-from .line_string_coordinates_item import LineStringCoordinatesItem
-from .metric_units import MetricUnits
-from .model_name import ModelName
-from .multi_line_string import MultiLineString
-from .multi_line_string_coordinates_item_item import MultiLineStringCoordinatesItemItem
-from .multi_point import MultiPoint
-from .multi_point_coordinates_item import MultiPointCoordinatesItem
-from .multi_polygon import MultiPolygon
-from .multi_polygon_coordinates_item_item_item import MultiPolygonCoordinatesItemItemItem
-from .point import Point
-from .point_coordinates import PointCoordinates
-from .polygon import Polygon
-from .polygon_coordinates_item_item import PolygonCoordinatesItemItem
-from .position_2_d import Position2D
-from .position_3_d import Position3D
-from .precipitation_type import PrecipitationType
-from .timezone import Timezone
-from .units import Units
-from .validation_error import ValidationError
-from .validation_error_loc_item import ValidationErrorLocItem
-from .weather_code import WeatherCode
+import typing
+from importlib import import_module
+
+if typing.TYPE_CHECKING:
+    from .base_model import BaseModel
+    from .cyclone_forecast_response import CycloneForecastResponse
+    from .daily_conditions import DailyConditions
+    from .daily_weather_response import DailyWeatherResponse
+    from .daily_weather_response_units import DailyWeatherResponseUnits
+    from .feature import Feature
+    from .feature_collection import FeatureCollection
+    from .feature_geometry import (
+        FeatureGeometry,
+        FeatureGeometry_GeometryCollection,
+        FeatureGeometry_LineString,
+        FeatureGeometry_MultiLineString,
+        FeatureGeometry_MultiPoint,
+        FeatureGeometry_MultiPolygon,
+        FeatureGeometry_Point,
+        FeatureGeometry_Polygon,
+    )
+    from .feature_id import FeatureId
+    from .feature_properties import FeatureProperties
+    from .geo_location import GeoLocation
+    from .geometry_collection import GeometryCollection
+    from .geometry_collection_geometries_item import (
+        GeometryCollectionGeometriesItem,
+        GeometryCollectionGeometriesItem_GeometryCollection,
+        GeometryCollectionGeometriesItem_LineString,
+        GeometryCollectionGeometriesItem_MultiLineString,
+        GeometryCollectionGeometriesItem_MultiPoint,
+        GeometryCollectionGeometriesItem_MultiPolygon,
+        GeometryCollectionGeometriesItem_Point,
+        GeometryCollectionGeometriesItem_Polygon,
+    )
+    from .gftus_base_units import GftusBaseUnits
+    from .gftus_hourly_conditions import GftusHourlyConditions
+    from .gftus_hourly_weather_response import GftusHourlyWeatherResponse
+    from .hourly_conditions import HourlyConditions
+    from .hourly_weather_response import HourlyWeatherResponse
+    from .hourly_weather_response_units import HourlyWeatherResponseUnits
+    from .http_validation_error import HttpValidationError
+    from .imperial_units import ImperialUnits
+    from .line_string import LineString
+    from .line_string_coordinates_item import LineStringCoordinatesItem
+    from .metric_units import MetricUnits
+    from .model_name import ModelName
+    from .multi_line_string import MultiLineString
+    from .multi_line_string_coordinates_item_item import MultiLineStringCoordinatesItemItem
+    from .multi_point import MultiPoint
+    from .multi_point_coordinates_item import MultiPointCoordinatesItem
+    from .multi_polygon import MultiPolygon
+    from .multi_polygon_coordinates_item_item_item import MultiPolygonCoordinatesItemItemItem
+    from .point import Point
+    from .point_coordinates import PointCoordinates
+    from .polygon import Polygon
+    from .polygon_coordinates_item_item import PolygonCoordinatesItemItem
+    from .position_2_d import Position2D
+    from .position_3_d import Position3D
+    from .precipitation_type import PrecipitationType
+    from .timezone import Timezone
+    from .units import Units
+    from .validation_error import ValidationError
+    from .validation_error_loc_item import ValidationErrorLocItem
+    from .weather_code import WeatherCode
+_dynamic_imports: typing.Dict[str, str] = {
+    "BaseModel": ".base_model",
+    "CycloneForecastResponse": ".cyclone_forecast_response",
+    "DailyConditions": ".daily_conditions",
+    "DailyWeatherResponse": ".daily_weather_response",
+    "DailyWeatherResponseUnits": ".daily_weather_response_units",
+    "Feature": ".feature",
+    "FeatureCollection": ".feature_collection",
+    "FeatureGeometry": ".feature_geometry",
+    "FeatureGeometry_GeometryCollection": ".feature_geometry",
+    "FeatureGeometry_LineString": ".feature_geometry",
+    "FeatureGeometry_MultiLineString": ".feature_geometry",
+    "FeatureGeometry_MultiPoint": ".feature_geometry",
+    "FeatureGeometry_MultiPolygon": ".feature_geometry",
+    "FeatureGeometry_Point": ".feature_geometry",
+    "FeatureGeometry_Polygon": ".feature_geometry",
+    "FeatureId": ".feature_id",
+    "FeatureProperties": ".feature_properties",
+    "GeoLocation": ".geo_location",
+    "GeometryCollection": ".geometry_collection",
+    "GeometryCollectionGeometriesItem": ".geometry_collection_geometries_item",
+    "GeometryCollectionGeometriesItem_GeometryCollection": ".geometry_collection_geometries_item",
+    "GeometryCollectionGeometriesItem_LineString": ".geometry_collection_geometries_item",
+    "GeometryCollectionGeometriesItem_MultiLineString": ".geometry_collection_geometries_item",
+    "GeometryCollectionGeometriesItem_MultiPoint": ".geometry_collection_geometries_item",
+    "GeometryCollectionGeometriesItem_MultiPolygon": ".geometry_collection_geometries_item",
+    "GeometryCollectionGeometriesItem_Point": ".geometry_collection_geometries_item",
+    "GeometryCollectionGeometriesItem_Polygon": ".geometry_collection_geometries_item",
+    "GftusBaseUnits": ".gftus_base_units",
+    "GftusHourlyConditions": ".gftus_hourly_conditions",
+    "GftusHourlyWeatherResponse": ".gftus_hourly_weather_response",
+    "HourlyConditions": ".hourly_conditions",
+    "HourlyWeatherResponse": ".hourly_weather_response",
+    "HourlyWeatherResponseUnits": ".hourly_weather_response_units",
+    "HttpValidationError": ".http_validation_error",
+    "ImperialUnits": ".imperial_units",
+    "LineString": ".line_string",
+    "LineStringCoordinatesItem": ".line_string_coordinates_item",
+    "MetricUnits": ".metric_units",
+    "ModelName": ".model_name",
+    "MultiLineString": ".multi_line_string",
+    "MultiLineStringCoordinatesItemItem": ".multi_line_string_coordinates_item_item",
+    "MultiPoint": ".multi_point",
+    "MultiPointCoordinatesItem": ".multi_point_coordinates_item",
+    "MultiPolygon": ".multi_polygon",
+    "MultiPolygonCoordinatesItemItemItem": ".multi_polygon_coordinates_item_item_item",
+    "Point": ".point",
+    "PointCoordinates": ".point_coordinates",
+    "Polygon": ".polygon",
+    "PolygonCoordinatesItemItem": ".polygon_coordinates_item_item",
+    "Position2D": ".position_2_d",
+    "Position3D": ".position_3_d",
+    "PrecipitationType": ".precipitation_type",
+    "Timezone": ".timezone",
+    "Units": ".units",
+    "ValidationError": ".validation_error",
+    "ValidationErrorLocItem": ".validation_error_loc_item",
+    "WeatherCode": ".weather_code",
+}
+
+
+def __getattr__(attr_name: str) -> typing.Any:
+    module_name = _dynamic_imports.get(attr_name)
+    if module_name is None:
+        raise AttributeError(f"No {attr_name} found in _dynamic_imports for module name -> {__name__}")
+    try:
+        module = import_module(module_name, __package__)
+        if module_name == f".{attr_name}":
+            return module
+        else:
+            return getattr(module, attr_name)
+    except ImportError as e:
+        raise ImportError(f"Failed to import {attr_name} from {module_name}: {e}") from e
+    except AttributeError as e:
+        raise AttributeError(f"Failed to get {attr_name} from {module_name}: {e}") from e
+
+
+def __dir__():
+    lazy_attrs = list(_dynamic_imports.keys())
+    return sorted(lazy_attrs)
+
 
 __all__ = [
     "BaseModel",
@@ -84,8 +167,6 @@ __all__ = [
     "FeatureGeometry_Polygon",
     "FeatureId",
     "FeatureProperties",
-    "ForecastRow",
-    "ForecastTable",
     "GeoLocation",
     "GeometryCollection",
     "GeometryCollectionGeometriesItem",

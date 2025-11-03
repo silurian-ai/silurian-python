@@ -68,6 +68,7 @@ class ForecastClient:
         client.weather.forecast.daily(
             latitude=47.6061,
             longitude=-122.3328,
+            units="metric",
         )
         """
         _response = self._raw_client.daily(
@@ -118,6 +119,9 @@ class ForecastClient:
         client.weather.forecast.hourly(
             latitude=47.6061,
             longitude=-122.3328,
+            timezone="local",
+            units="metric",
+            include_past=True,
         )
         """
         _response = self._raw_client.hourly(
@@ -193,6 +197,7 @@ class AsyncForecastClient:
             await client.weather.forecast.daily(
                 latitude=47.6061,
                 longitude=-122.3328,
+                units="metric",
             )
 
 
@@ -251,6 +256,9 @@ class AsyncForecastClient:
             await client.weather.forecast.hourly(
                 latitude=47.6061,
                 longitude=-122.3328,
+                timezone="local",
+                units="metric",
+                include_past=True,
             )
 
 

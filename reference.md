@@ -27,12 +27,20 @@ Query the available cyclone forecasts for a particular time
 <dd>
 
 ```python
+import datetime
+
 from silurian import Earth
 
 client = Earth(
     api_key="YOUR_API_KEY",
 )
-client.cyclones.forecasts.list()
+client.cyclones.forecasts.list(
+    time=datetime.datetime.fromisoformat(
+        "2024-01-15 09:30:00+00:00",
+    ),
+    min_storm_category=1,
+    model="OFCL",
+)
 
 ```
 </dd>
@@ -57,6 +65,14 @@ client.cyclones.forecasts.list()
 <dd>
 
 **min_storm_category:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**basin_ids:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` 
     
 </dd>
 </dl>
@@ -111,6 +127,8 @@ Get cyclone tracks in GeoJSON (MF-GeoJSON) format
 <dd>
 
 ```python
+import datetime
+
 from silurian import Earth
 
 client = Earth(
@@ -118,6 +136,11 @@ client = Earth(
 )
 client.cyclones.forecasts.track(
     storm_id="storm_id",
+    time=datetime.datetime.fromisoformat(
+        "2024-01-15 09:30:00+00:00",
+    ),
+    max_lead_time="max_lead_time",
+    model="OFCL",
 )
 
 ```
@@ -205,6 +228,8 @@ Get cyclone forecast cone in GeoJSON format
 <dd>
 
 ```python
+import datetime
+
 from silurian import Earth
 
 client = Earth(
@@ -212,6 +237,12 @@ client = Earth(
 )
 client.cyclones.forecasts.cone(
     storm_id="storm_id",
+    time=datetime.datetime.fromisoformat(
+        "2024-01-15 09:30:00+00:00",
+    ),
+    max_lead_time="max_lead_time",
+    smooth_cone=True,
+    model="OFCL",
 )
 
 ```
@@ -318,6 +349,7 @@ client = Earth(
 client.weather.forecast.daily(
     latitude=47.6061,
     longitude=-122.3328,
+    units="metric",
 )
 
 ```
@@ -413,6 +445,9 @@ client = Earth(
 client.weather.forecast.hourly(
     latitude=47.6061,
     longitude=-122.3328,
+    timezone="local",
+    units="metric",
+    include_past=True,
 )
 
 ```
@@ -517,6 +552,8 @@ client = Earth(
 client.weather.experimental.extended(
     latitude=47.6061,
     longitude=-122.3328,
+    timezone="local",
+    units="metric",
 )
 
 ```
@@ -613,6 +650,8 @@ client = Earth(
 client.weather.experimental.regional.usa(
     latitude=47.6061,
     longitude=-122.3328,
+    timezone="local",
+    units="metric",
 )
 
 ```
@@ -677,20 +716,6 @@ client.weather.experimental.regional.usa(
 <details><summary><code>client.weather.experimental.personalized.<a href="src/silurian/weather/experimental/personalized/client.py">total_energies</a>()</code></summary>
 <dl>
 <dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Return asset‑level forecast data as a JSON ForecastTable.
-</dd>
-</dl>
-</dd>
-</dl>
 
 #### 🔌 Usage
 
@@ -775,6 +800,8 @@ client.weather.experimental.past.regional.usa(
     time=datetime.datetime.fromisoformat(
         "2024-01-01 00:00:00+00:00",
     ),
+    timezone="local",
+    units="metric",
 )
 
 ```
@@ -884,6 +911,8 @@ client.weather.past.forecast.daily(
     time=datetime.datetime.fromisoformat(
         "2024-01-01 00:00:00+00:00",
     ),
+    timezone="local",
+    units="metric",
 )
 
 ```
@@ -992,6 +1021,8 @@ client.weather.past.forecast.hourly(
     time=datetime.datetime.fromisoformat(
         "2024-01-01 00:00:00+00:00",
     ),
+    timezone="local",
+    units="metric",
 )
 
 ```

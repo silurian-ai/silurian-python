@@ -27,6 +27,7 @@ class RawForecastsClient:
         *,
         time: typing.Optional[dt.datetime] = None,
         min_storm_category: typing.Optional[int] = None,
+        basin_ids: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         model: typing.Optional[ModelName] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[typing.List[CycloneForecastResponse]]:
@@ -39,6 +40,8 @@ class RawForecastsClient:
             *Default value: (current time) - Default time zone: UTC*
 
         min_storm_category : typing.Optional[int]
+
+        basin_ids : typing.Optional[typing.Union[str, typing.Sequence[str]]]
 
         model : typing.Optional[ModelName]
 
@@ -56,6 +59,7 @@ class RawForecastsClient:
             params={
                 "time": serialize_datetime(time) if time is not None else None,
                 "min_storm_category": min_storm_category,
+                "basin_ids": basin_ids,
                 "model": model,
             },
             request_options=request_options,
@@ -236,6 +240,7 @@ class AsyncRawForecastsClient:
         *,
         time: typing.Optional[dt.datetime] = None,
         min_storm_category: typing.Optional[int] = None,
+        basin_ids: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         model: typing.Optional[ModelName] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[typing.List[CycloneForecastResponse]]:
@@ -248,6 +253,8 @@ class AsyncRawForecastsClient:
             *Default value: (current time) - Default time zone: UTC*
 
         min_storm_category : typing.Optional[int]
+
+        basin_ids : typing.Optional[typing.Union[str, typing.Sequence[str]]]
 
         model : typing.Optional[ModelName]
 
@@ -265,6 +272,7 @@ class AsyncRawForecastsClient:
             params={
                 "time": serialize_datetime(time) if time is not None else None,
                 "min_storm_category": min_storm_category,
+                "basin_ids": basin_ids,
                 "model": model,
             },
             request_options=request_options,

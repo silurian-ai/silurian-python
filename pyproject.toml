@@ -3,7 +3,7 @@ name = "silurian"
 
 [tool.poetry]
 name = "silurian"
-version = "0.0.16"
+version = "0.0.17"
 description = ""
 readme = "README.md"
 authors = []
@@ -30,14 +30,14 @@ packages = [
     { include = "silurian", from = "src"}
 ]
 
-[project.urls]
+[tool.poetry.urls]
 Repository = 'https://github.com/silurian-ai/silurian-python'
 
 [tool.poetry.dependencies]
 python = "^3.8"
 httpx = ">=0.21.2"
 pydantic = ">= 1.9.2"
-pydantic-core = "^2.18.2"
+pydantic-core = ">=2.18.2"
 typing_extensions = ">= 4.0.0"
 
 [tool.poetry.group.dev.dependencies]

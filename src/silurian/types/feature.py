@@ -32,6 +32,4 @@ class Feature(UniversalBaseModel):
             extra = pydantic.Extra.allow
 
 
-from .geometry_collection import GeometryCollection  # noqa: E402, F401, I001
-
 update_forward_refs(Feature)

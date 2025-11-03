@@ -29,9 +29,6 @@ class GeometryCollectionGeometriesItem_GeometryCollection(UniversalBaseModel):
             extra = pydantic.Extra.allow
 
 
-from .geometry_collection import GeometryCollection  # noqa: E402, F401, I001
-
-
 class GeometryCollectionGeometriesItem_LineString(UniversalBaseModel):
     type: typing.Literal["LineString"] = "LineString"
     bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None

@@ -31,6 +31,7 @@ class ForecastsClient:
         *,
         time: typing.Optional[dt.datetime] = None,
         min_storm_category: typing.Optional[int] = None,
+        basin_ids: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         model: typing.Optional[ModelName] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> typing.List[CycloneForecastResponse]:
@@ -44,6 +45,8 @@ class ForecastsClient:
 
         min_storm_category : typing.Optional[int]
 
+        basin_ids : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+
         model : typing.Optional[ModelName]
 
         request_options : typing.Optional[RequestOptions]
@@ -56,15 +59,27 @@ class ForecastsClient:
 
         Examples
         --------
+        import datetime
+
         from silurian import Earth
 
         client = Earth(
             api_key="YOUR_API_KEY",
         )
-        client.cyclones.forecasts.list()
+        client.cyclones.forecasts.list(
+            time=datetime.datetime.fromisoformat(
+                "2024-01-15 09:30:00+00:00",
+            ),
+            min_storm_category=1,
+            model="OFCL",
+        )
         """
         _response = self._raw_client.list(
-            time=time, min_storm_category=min_storm_category, model=model, request_options=request_options
+            time=time,
+            min_storm_category=min_storm_category,
+            basin_ids=basin_ids,
+            model=model,
+            request_options=request_options,
         )
         return _response.data
 
@@ -102,6 +117,8 @@ class ForecastsClient:
 
         Examples
         --------
+        import datetime
+
         from silurian import Earth
 
         client = Earth(
@@ -109,6 +126,11 @@ class ForecastsClient:
         )
         client.cyclones.forecasts.track(
             storm_id="storm_id",
+            time=datetime.datetime.fromisoformat(
+                "2024-01-15 09:30:00+00:00",
+            ),
+            max_lead_time="max_lead_time",
+            model="OFCL",
         )
         """
         _response = self._raw_client.track(
@@ -153,6 +175,8 @@ class ForecastsClient:
 
         Examples
         --------
+        import datetime
+
         from silurian import Earth
 
         client = Earth(
@@ -160,6 +184,12 @@ class ForecastsClient:
         )
         client.cyclones.forecasts.cone(
             storm_id="storm_id",
+            time=datetime.datetime.fromisoformat(
+                "2024-01-15 09:30:00+00:00",
+            ),
+            max_lead_time="max_lead_time",
+            smooth_cone=True,
+            model="OFCL",
         )
         """
         _response = self._raw_client.cone(
@@ -193,6 +223,7 @@ class AsyncForecastsClient:
         *,
         time: typing.Optional[dt.datetime] = None,
         min_storm_category: typing.Optional[int] = None,
+        basin_ids: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         model: typing.Optional[ModelName] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> typing.List[CycloneForecastResponse]:
@@ -205,6 +236,8 @@ class AsyncForecastsClient:
             *Default value: (current time) - Default time zone: UTC*
 
         min_storm_category : typing.Optional[int]
+
+        basin_ids : typing.Optional[typing.Union[str, typing.Sequence[str]]]
 
         model : typing.Optional[ModelName]
 
@@ -219,6 +252,7 @@ class AsyncForecastsClient:
         Examples
         --------
         import asyncio
+        import datetime
 
         from silurian import AsyncEarth
 
@@ -228,13 +262,23 @@ class AsyncForecastsClient:
 
 
         async def main() -> None:
-            await client.cyclones.forecasts.list()
+            await client.cyclones.forecasts.list(
+                time=datetime.datetime.fromisoformat(
+                    "2024-01-15 09:30:00+00:00",
+                ),
+                min_storm_category=1,
+                model="OFCL",
+            )
 
 
         asyncio.run(main())
         """
         _response = await self._raw_client.list(
-            time=time, min_storm_category=min_storm_category, model=model, request_options=request_options
+            time=time,
+            min_storm_category=min_storm_category,
+            basin_ids=basin_ids,
+            model=model,
+            request_options=request_options,
         )
         return _response.data
 
@@ -273,6 +317,7 @@ class AsyncForecastsClient:
         Examples
         --------
         import asyncio
+        import datetime
 
         from silurian import AsyncEarth
 
@@ -284,6 +329,11 @@ class AsyncForecastsClient:
         async def main() -> None:
             await client.cyclones.forecasts.track(
                 storm_id="storm_id",
+                time=datetime.datetime.fromisoformat(
+                    "2024-01-15 09:30:00+00:00",
+                ),
+                max_lead_time="max_lead_time",
+                model="OFCL",
             )
 
 
@@ -332,6 +382,7 @@ class AsyncForecastsClient:
         Examples
         --------
         import asyncio
+        import datetime
 
         from silurian import AsyncEarth
 
@@ -343,6 +394,12 @@ class AsyncForecastsClient:
         async def main() -> None:
             await client.cyclones.forecasts.cone(
                 storm_id="storm_id",
+                time=datetime.datetime.fromisoformat(
+                    "2024-01-15 09:30:00+00:00",
+                ),
+                max_lead_time="max_lead_time",
+                smooth_cone=True,
+                model="OFCL",
             )
 
 

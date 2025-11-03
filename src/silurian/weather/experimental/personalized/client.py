@@ -4,7 +4,6 @@ import typing
 
 from ....core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ....core.request_options import RequestOptions
-from ....types.forecast_table import ForecastTable
 from .raw_client import AsyncRawPersonalizedClient, RawPersonalizedClient
 
 
@@ -23,10 +22,8 @@ class PersonalizedClient:
         """
         return self._raw_client
 
-    def total_energies(self, *, request_options: typing.Optional[RequestOptions] = None) -> ForecastTable:
+    def total_energies(self, *, request_options: typing.Optional[RequestOptions] = None) -> None:
         """
-        Return asset‑level forecast data as a JSON ForecastTable.
-
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -34,8 +31,7 @@ class PersonalizedClient:
 
         Returns
         -------
-        ForecastTable
-            Successful Response
+        None
 
         Examples
         --------
@@ -65,10 +61,8 @@ class AsyncPersonalizedClient:
         """
         return self._raw_client
 
-    async def total_energies(self, *, request_options: typing.Optional[RequestOptions] = None) -> ForecastTable:
+    async def total_energies(self, *, request_options: typing.Optional[RequestOptions] = None) -> None:
         """
-        Return asset‑level forecast data as a JSON ForecastTable.
-
         Parameters
         ----------
         request_options : typing.Optional[RequestOptions]
@@ -76,8 +70,7 @@ class AsyncPersonalizedClient:
 
         Returns
         -------
-        ForecastTable
-            Successful Response
+        None
 
         Examples
         --------

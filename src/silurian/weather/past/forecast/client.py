@@ -75,6 +75,8 @@ class ForecastClient:
             time=datetime.datetime.fromisoformat(
                 "2024-01-01 00:00:00+00:00",
             ),
+            timezone="local",
+            units="metric",
         )
         """
         _response = self._raw_client.daily(
@@ -135,6 +137,8 @@ class ForecastClient:
             time=datetime.datetime.fromisoformat(
                 "2024-01-01 00:00:00+00:00",
             ),
+            timezone="local",
+            units="metric",
         )
         """
         _response = self._raw_client.hourly(
@@ -215,6 +219,8 @@ class AsyncForecastClient:
                 time=datetime.datetime.fromisoformat(
                     "2024-01-01 00:00:00+00:00",
                 ),
+                timezone="local",
+                units="metric",
             )
 
 
@@ -282,6 +288,8 @@ class AsyncForecastClient:
                 time=datetime.datetime.fromisoformat(
                     "2024-01-01 00:00:00+00:00",
                 ),
+                timezone="local",
+                units="metric",
             )
 
 
