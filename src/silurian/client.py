@@ -10,6 +10,7 @@ from .environment import EarthEnvironment
 
 if typing.TYPE_CHECKING:
     from .cyclones.client import AsyncCyclonesClient, CyclonesClient
+    from .portfolios.client import AsyncPortfoliosClient, PortfoliosClient
     from .weather.client import AsyncWeatherClient, WeatherClient
 
 
@@ -78,8 +79,17 @@ class Earth:
             else httpx.Client(timeout=_defaulted_timeout),
             timeout=_defaulted_timeout,
         )
+        self._portfolios: typing.Optional[PortfoliosClient] = None
         self._cyclones: typing.Optional[CyclonesClient] = None
         self._weather: typing.Optional[WeatherClient] = None
+
+    @property
+    def portfolios(self):
+        if self._portfolios is None:
+            from .portfolios.client import PortfoliosClient  # noqa: E402
+
+            self._portfolios = PortfoliosClient(client_wrapper=self._client_wrapper)
+        return self._portfolios
 
     @property
     def cyclones(self):
@@ -163,8 +173,17 @@ class AsyncEarth:
             else httpx.AsyncClient(timeout=_defaulted_timeout),
             timeout=_defaulted_timeout,
         )
+        self._portfolios: typing.Optional[AsyncPortfoliosClient] = None
         self._cyclones: typing.Optional[AsyncCyclonesClient] = None
         self._weather: typing.Optional[AsyncWeatherClient] = None
+
+    @property
+    def portfolios(self):
+        if self._portfolios is None:
+            from .portfolios.client import AsyncPortfoliosClient  # noqa: E402
+
+            self._portfolios = AsyncPortfoliosClient(client_wrapper=self._client_wrapper)
+        return self._portfolios
 
     @property
     def cyclones(self):

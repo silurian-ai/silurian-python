@@ -59,6 +59,19 @@ if typing.TYPE_CHECKING:
         Position2D,
         Position3D,
         PrecipitationType,
+        TimeSeriesFeatureCollectionModel,
+        TimeSeriesFeatureModel,
+        TimeSeriesFeatureModelGeometry,
+        TimeSeriesFeatureModelGeometry_GeometryCollection,
+        TimeSeriesFeatureModelGeometry_LineString,
+        TimeSeriesFeatureModelGeometry_MultiLineString,
+        TimeSeriesFeatureModelGeometry_MultiPoint,
+        TimeSeriesFeatureModelGeometry_MultiPolygon,
+        TimeSeriesFeatureModelGeometry_Point,
+        TimeSeriesFeatureModelGeometry_Polygon,
+        TimeSeriesFeatureModelId,
+        TimeSeriesPropertiesModel,
+        TimeSeriesPropertiesModelStatic,
         Timezone,
         Units,
         ValidationError,
@@ -66,7 +79,7 @@ if typing.TYPE_CHECKING:
         WeatherCode,
     )
     from .errors import UnprocessableEntityError
-    from . import cyclones, weather
+    from . import cyclones, portfolios, weather
     from .client import AsyncEarth, Earth
     from .environment import EarthEnvironment
     from .version import __version__
@@ -126,6 +139,19 @@ _dynamic_imports: typing.Dict[str, str] = {
     "Position2D": ".types",
     "Position3D": ".types",
     "PrecipitationType": ".types",
+    "TimeSeriesFeatureCollectionModel": ".types",
+    "TimeSeriesFeatureModel": ".types",
+    "TimeSeriesFeatureModelGeometry": ".types",
+    "TimeSeriesFeatureModelGeometry_GeometryCollection": ".types",
+    "TimeSeriesFeatureModelGeometry_LineString": ".types",
+    "TimeSeriesFeatureModelGeometry_MultiLineString": ".types",
+    "TimeSeriesFeatureModelGeometry_MultiPoint": ".types",
+    "TimeSeriesFeatureModelGeometry_MultiPolygon": ".types",
+    "TimeSeriesFeatureModelGeometry_Point": ".types",
+    "TimeSeriesFeatureModelGeometry_Polygon": ".types",
+    "TimeSeriesFeatureModelId": ".types",
+    "TimeSeriesPropertiesModel": ".types",
+    "TimeSeriesPropertiesModelStatic": ".types",
     "Timezone": ".types",
     "Units": ".types",
     "UnprocessableEntityError": ".errors",
@@ -134,6 +160,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "WeatherCode": ".types",
     "__version__": ".version",
     "cyclones": ".cyclones",
+    "portfolios": ".portfolios",
     "weather": ".weather",
 }
 
@@ -215,6 +242,19 @@ __all__ = [
     "Position2D",
     "Position3D",
     "PrecipitationType",
+    "TimeSeriesFeatureCollectionModel",
+    "TimeSeriesFeatureModel",
+    "TimeSeriesFeatureModelGeometry",
+    "TimeSeriesFeatureModelGeometry_GeometryCollection",
+    "TimeSeriesFeatureModelGeometry_LineString",
+    "TimeSeriesFeatureModelGeometry_MultiLineString",
+    "TimeSeriesFeatureModelGeometry_MultiPoint",
+    "TimeSeriesFeatureModelGeometry_MultiPolygon",
+    "TimeSeriesFeatureModelGeometry_Point",
+    "TimeSeriesFeatureModelGeometry_Polygon",
+    "TimeSeriesFeatureModelId",
+    "TimeSeriesPropertiesModel",
+    "TimeSeriesPropertiesModelStatic",
     "Timezone",
     "Units",
     "UnprocessableEntityError",
@@ -223,5 +263,6 @@ __all__ = [
     "WeatherCode",
     "__version__",
     "cyclones",
+    "portfolios",
     "weather",
 ]

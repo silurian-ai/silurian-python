@@ -62,6 +62,21 @@ if typing.TYPE_CHECKING:
     from .position_2_d import Position2D
     from .position_3_d import Position3D
     from .precipitation_type import PrecipitationType
+    from .time_series_feature_collection_model import TimeSeriesFeatureCollectionModel
+    from .time_series_feature_model import TimeSeriesFeatureModel
+    from .time_series_feature_model_geometry import (
+        TimeSeriesFeatureModelGeometry,
+        TimeSeriesFeatureModelGeometry_GeometryCollection,
+        TimeSeriesFeatureModelGeometry_LineString,
+        TimeSeriesFeatureModelGeometry_MultiLineString,
+        TimeSeriesFeatureModelGeometry_MultiPoint,
+        TimeSeriesFeatureModelGeometry_MultiPolygon,
+        TimeSeriesFeatureModelGeometry_Point,
+        TimeSeriesFeatureModelGeometry_Polygon,
+    )
+    from .time_series_feature_model_id import TimeSeriesFeatureModelId
+    from .time_series_properties_model import TimeSeriesPropertiesModel
+    from .time_series_properties_model_static import TimeSeriesPropertiesModelStatic
     from .timezone import Timezone
     from .units import Units
     from .validation_error import ValidationError
@@ -120,6 +135,19 @@ _dynamic_imports: typing.Dict[str, str] = {
     "Position2D": ".position_2_d",
     "Position3D": ".position_3_d",
     "PrecipitationType": ".precipitation_type",
+    "TimeSeriesFeatureCollectionModel": ".time_series_feature_collection_model",
+    "TimeSeriesFeatureModel": ".time_series_feature_model",
+    "TimeSeriesFeatureModelGeometry": ".time_series_feature_model_geometry",
+    "TimeSeriesFeatureModelGeometry_GeometryCollection": ".time_series_feature_model_geometry",
+    "TimeSeriesFeatureModelGeometry_LineString": ".time_series_feature_model_geometry",
+    "TimeSeriesFeatureModelGeometry_MultiLineString": ".time_series_feature_model_geometry",
+    "TimeSeriesFeatureModelGeometry_MultiPoint": ".time_series_feature_model_geometry",
+    "TimeSeriesFeatureModelGeometry_MultiPolygon": ".time_series_feature_model_geometry",
+    "TimeSeriesFeatureModelGeometry_Point": ".time_series_feature_model_geometry",
+    "TimeSeriesFeatureModelGeometry_Polygon": ".time_series_feature_model_geometry",
+    "TimeSeriesFeatureModelId": ".time_series_feature_model_id",
+    "TimeSeriesPropertiesModel": ".time_series_properties_model",
+    "TimeSeriesPropertiesModelStatic": ".time_series_properties_model_static",
     "Timezone": ".timezone",
     "Units": ".units",
     "ValidationError": ".validation_error",
@@ -202,6 +230,19 @@ __all__ = [
     "Position2D",
     "Position3D",
     "PrecipitationType",
+    "TimeSeriesFeatureCollectionModel",
+    "TimeSeriesFeatureModel",
+    "TimeSeriesFeatureModelGeometry",
+    "TimeSeriesFeatureModelGeometry_GeometryCollection",
+    "TimeSeriesFeatureModelGeometry_LineString",
+    "TimeSeriesFeatureModelGeometry_MultiLineString",
+    "TimeSeriesFeatureModelGeometry_MultiPoint",
+    "TimeSeriesFeatureModelGeometry_MultiPolygon",
+    "TimeSeriesFeatureModelGeometry_Point",
+    "TimeSeriesFeatureModelGeometry_Polygon",
+    "TimeSeriesFeatureModelId",
+    "TimeSeriesPropertiesModel",
+    "TimeSeriesPropertiesModelStatic",
     "Timezone",
     "Units",
     "ValidationError",
