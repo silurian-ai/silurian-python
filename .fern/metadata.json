@@ -5,10 +5,10 @@
   "generatorConfig": {
     "client_class_name": "Earth"
   },
-  "originGitCommit": "5e0d6938082036ef1823acfb90217781fe8914fa",
+  "originGitCommit": "9bd8e0a8455c5ab8947019723a761a1bf6406edc",
   "originGitCommitIsDirty": false,
   "invokedBy": "ci",
-  "requestedVersion": "0.0.19",
+  "requestedVersion": "0.0.20",
   "ciProvider": "github",
-  "sdkVersion": "0.0.19"
+  "sdkVersion": "0.0.20"
 }
