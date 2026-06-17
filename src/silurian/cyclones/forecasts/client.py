@@ -7,8 +7,10 @@ from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.request_options import RequestOptions
 from ...types.cyclone_forecast_response import CycloneForecastResponse
 from ...types.feature_collection import FeatureCollection
-from ...types.model_name import ModelName
 from .raw_client import AsyncRawForecastsClient, RawForecastsClient
+from .types.forecasts_cone_request_model import ForecastsConeRequestModel
+from .types.forecasts_list_request_model import ForecastsListRequestModel
+from .types.forecasts_track_request_model import ForecastsTrackRequestModel
 
 
 class ForecastsClient:
@@ -32,7 +34,7 @@ class ForecastsClient:
         time: typing.Optional[dt.datetime] = None,
         min_storm_category: typing.Optional[int] = None,
         basin_ids: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        model: typing.Optional[ModelName] = None,
+        model: typing.Optional[ForecastsListRequestModel] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> typing.List[CycloneForecastResponse]:
         """
@@ -47,7 +49,7 @@ class ForecastsClient:
 
         basin_ids : typing.Optional[typing.Union[str, typing.Sequence[str]]]
 
-        model : typing.Optional[ModelName]
+        model : typing.Optional[ForecastsListRequestModel]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -90,7 +92,7 @@ class ForecastsClient:
         *,
         time: typing.Optional[dt.datetime] = None,
         max_lead_time: typing.Optional[str] = None,
-        model: typing.Optional[ModelName] = None,
+        model: typing.Optional[ForecastsTrackRequestModel] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> FeatureCollection:
         """
@@ -106,7 +108,7 @@ class ForecastsClient:
         max_lead_time : typing.Optional[str]
             *Value must be > P0D*
 
-        model : typing.Optional[ModelName]
+        model : typing.Optional[ForecastsTrackRequestModel]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -146,7 +148,7 @@ class ForecastsClient:
         time: typing.Optional[dt.datetime] = None,
         max_lead_time: typing.Optional[str] = None,
         smooth_cone: typing.Optional[bool] = None,
-        model: typing.Optional[ModelName] = None,
+        model: typing.Optional[ForecastsConeRequestModel] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> FeatureCollection:
         """
@@ -164,7 +166,7 @@ class ForecastsClient:
 
         smooth_cone : typing.Optional[bool]
 
-        model : typing.Optional[ModelName]
+        model : typing.Optional[ForecastsConeRequestModel]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -225,7 +227,7 @@ class AsyncForecastsClient:
         time: typing.Optional[dt.datetime] = None,
         min_storm_category: typing.Optional[int] = None,
         basin_ids: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        model: typing.Optional[ModelName] = None,
+        model: typing.Optional[ForecastsListRequestModel] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> typing.List[CycloneForecastResponse]:
         """
@@ -240,7 +242,7 @@ class AsyncForecastsClient:
 
         basin_ids : typing.Optional[typing.Union[str, typing.Sequence[str]]]
 
-        model : typing.Optional[ModelName]
+        model : typing.Optional[ForecastsListRequestModel]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -290,7 +292,7 @@ class AsyncForecastsClient:
         *,
         time: typing.Optional[dt.datetime] = None,
         max_lead_time: typing.Optional[str] = None,
-        model: typing.Optional[ModelName] = None,
+        model: typing.Optional[ForecastsTrackRequestModel] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> FeatureCollection:
         """
@@ -306,7 +308,7 @@ class AsyncForecastsClient:
         max_lead_time : typing.Optional[str]
             *Value must be > P0D*
 
-        model : typing.Optional[ModelName]
+        model : typing.Optional[ForecastsTrackRequestModel]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -353,7 +355,7 @@ class AsyncForecastsClient:
         time: typing.Optional[dt.datetime] = None,
         max_lead_time: typing.Optional[str] = None,
         smooth_cone: typing.Optional[bool] = None,
-        model: typing.Optional[ModelName] = None,
+        model: typing.Optional[ForecastsConeRequestModel] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> FeatureCollection:
         """
@@ -371,7 +373,7 @@ class AsyncForecastsClient:
 
         smooth_cone : typing.Optional[bool]
 
-        model : typing.Optional[ModelName]
+        model : typing.Optional[ForecastsConeRequestModel]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.

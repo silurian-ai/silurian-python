@@ -495,7 +495,7 @@ client.cyclones.forecasts.list(
 <dl>
 <dd>
 
-**model:** `typing.Optional[ModelName]` 
+**model:** `typing.Optional[ForecastsListRequestModel]` 
     
 </dd>
 </dl>
@@ -596,7 +596,7 @@ client.cyclones.forecasts.track(
 <dl>
 <dd>
 
-**model:** `typing.Optional[ModelName]` 
+**model:** `typing.Optional[ForecastsTrackRequestModel]` 
     
 </dd>
 </dl>
@@ -706,7 +706,7 @@ client.cyclones.forecasts.cone(
 <dl>
 <dd>
 
-**model:** `typing.Optional[ModelName]` 
+**model:** `typing.Optional[ForecastsConeRequestModel]` 
     
 </dd>
 </dl>

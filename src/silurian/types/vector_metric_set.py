@@ -2,4 +2,4 @@
 
 import typing
 
-ValidationErrorLocItem = typing.Union[str, int]
+VectorMetricSet = typing.Union[typing.List[str], typing.List[typing.List[str]]]

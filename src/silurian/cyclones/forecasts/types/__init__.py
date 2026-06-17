@@ -6,13 +6,13 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
-    from . import forecasts
-    from .forecasts import ForecastsConeRequestModel, ForecastsListRequestModel, ForecastsTrackRequestModel
+    from .forecasts_cone_request_model import ForecastsConeRequestModel
+    from .forecasts_list_request_model import ForecastsListRequestModel
+    from .forecasts_track_request_model import ForecastsTrackRequestModel
 _dynamic_imports: typing.Dict[str, str] = {
-    "ForecastsConeRequestModel": ".forecasts",
-    "ForecastsListRequestModel": ".forecasts",
-    "ForecastsTrackRequestModel": ".forecasts",
-    "forecasts": ".forecasts",
+    "ForecastsConeRequestModel": ".forecasts_cone_request_model",
+    "ForecastsListRequestModel": ".forecasts_list_request_model",
+    "ForecastsTrackRequestModel": ".forecasts_track_request_model",
 }
 
 
@@ -37,4 +37,4 @@ def __dir__():
     return sorted(lazy_attrs)
 
 
-__all__ = ["ForecastsConeRequestModel", "ForecastsListRequestModel", "ForecastsTrackRequestModel", "forecasts"]
+__all__ = ["ForecastsConeRequestModel", "ForecastsListRequestModel", "ForecastsTrackRequestModel"]

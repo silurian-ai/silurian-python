@@ -6,11 +6,16 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
+    from .alarm_outcome import AlarmOutcome
     from .base_model import BaseModel
+    from .bucket import Bucket
     from .cyclone_forecast_response import CycloneForecastResponse
     from .daily_conditions import DailyConditions
     from .daily_weather_response import DailyWeatherResponse
     from .daily_weather_response_units import DailyWeatherResponseUnits
+    from .detection_point import DetectionPoint
+    from .distribution import Distribution
+    from .event_outcome import EventOutcome
     from .feature import Feature
     from .feature_collection import FeatureCollection
     from .feature_geometry import (
@@ -40,15 +45,14 @@ if typing.TYPE_CHECKING:
     from .gftus_base_units import GftusBaseUnits
     from .gftus_hourly_conditions import GftusHourlyConditions
     from .gftus_hourly_weather_response import GftusHourlyWeatherResponse
+    from .histogram import Histogram
     from .hourly_conditions import HourlyConditions
     from .hourly_weather_response import HourlyWeatherResponse
     from .hourly_weather_response_units import HourlyWeatherResponseUnits
-    from .http_validation_error import HttpValidationError
     from .imperial_units import ImperialUnits
     from .line_string import LineString
     from .line_string_coordinates_item import LineStringCoordinatesItem
     from .metric_units import MetricUnits
-    from .model_name import ModelName
     from .multi_line_string import MultiLineString
     from .multi_line_string_coordinates_item_item import MultiLineStringCoordinatesItemItem
     from .multi_point import MultiPoint
@@ -62,6 +66,13 @@ if typing.TYPE_CHECKING:
     from .position_2_d import Position2D
     from .position_3_d import Position3D
     from .precipitation_type import PrecipitationType
+    from .quantile import Quantile
+    from .reliability_point import ReliabilityPoint
+    from .sample import Sample
+    from .scorecard_model import ScorecardModel
+    from .skill_by_lead_point import SkillByLeadPoint
+    from .skill_kpis import SkillKpis
+    from .summary import Summary
     from .time_series_feature_collection_model import TimeSeriesFeatureCollectionModel
     from .time_series_feature_model import TimeSeriesFeatureModel
     from .time_series_feature_model_geometry import (
@@ -79,15 +90,28 @@ if typing.TYPE_CHECKING:
     from .time_series_properties_model_static import TimeSeriesPropertiesModelStatic
     from .timezone import Timezone
     from .units import Units
-    from .validation_error import ValidationError
-    from .validation_error_loc_item import ValidationErrorLocItem
+    from .vector_metric import VectorMetric
+    from .vector_metric_counter import VectorMetricCounter
+    from .vector_metric_distribution import VectorMetricDistribution
+    from .vector_metric_gauge import VectorMetricGauge
+    from .vector_metric_histogram import VectorMetricHistogram
+    from .vector_metric_interval_ms import VectorMetricIntervalMs
+    from .vector_metric_kind import VectorMetricKind
+    from .vector_metric_set import VectorMetricSet
+    from .vector_metric_summary import VectorMetricSummary
+    from .vector_metric_timestamp import VectorMetricTimestamp
     from .weather_code import WeatherCode
 _dynamic_imports: typing.Dict[str, str] = {
+    "AlarmOutcome": ".alarm_outcome",
     "BaseModel": ".base_model",
+    "Bucket": ".bucket",
     "CycloneForecastResponse": ".cyclone_forecast_response",
     "DailyConditions": ".daily_conditions",
     "DailyWeatherResponse": ".daily_weather_response",
     "DailyWeatherResponseUnits": ".daily_weather_response_units",
+    "DetectionPoint": ".detection_point",
+    "Distribution": ".distribution",
+    "EventOutcome": ".event_outcome",
     "Feature": ".feature",
     "FeatureCollection": ".feature_collection",
     "FeatureGeometry": ".feature_geometry",
@@ -113,15 +137,14 @@ _dynamic_imports: typing.Dict[str, str] = {
     "GftusBaseUnits": ".gftus_base_units",
     "GftusHourlyConditions": ".gftus_hourly_conditions",
     "GftusHourlyWeatherResponse": ".gftus_hourly_weather_response",
+    "Histogram": ".histogram",
     "HourlyConditions": ".hourly_conditions",
     "HourlyWeatherResponse": ".hourly_weather_response",
     "HourlyWeatherResponseUnits": ".hourly_weather_response_units",
-    "HttpValidationError": ".http_validation_error",
     "ImperialUnits": ".imperial_units",
     "LineString": ".line_string",
     "LineStringCoordinatesItem": ".line_string_coordinates_item",
     "MetricUnits": ".metric_units",
-    "ModelName": ".model_name",
     "MultiLineString": ".multi_line_string",
     "MultiLineStringCoordinatesItemItem": ".multi_line_string_coordinates_item_item",
     "MultiPoint": ".multi_point",
@@ -135,6 +158,13 @@ _dynamic_imports: typing.Dict[str, str] = {
     "Position2D": ".position_2_d",
     "Position3D": ".position_3_d",
     "PrecipitationType": ".precipitation_type",
+    "Quantile": ".quantile",
+    "ReliabilityPoint": ".reliability_point",
+    "Sample": ".sample",
+    "ScorecardModel": ".scorecard_model",
+    "SkillByLeadPoint": ".skill_by_lead_point",
+    "SkillKpis": ".skill_kpis",
+    "Summary": ".summary",
     "TimeSeriesFeatureCollectionModel": ".time_series_feature_collection_model",
     "TimeSeriesFeatureModel": ".time_series_feature_model",
     "TimeSeriesFeatureModelGeometry": ".time_series_feature_model_geometry",
@@ -150,8 +180,16 @@ _dynamic_imports: typing.Dict[str, str] = {
     "TimeSeriesPropertiesModelStatic": ".time_series_properties_model_static",
     "Timezone": ".timezone",
     "Units": ".units",
-    "ValidationError": ".validation_error",
-    "ValidationErrorLocItem": ".validation_error_loc_item",
+    "VectorMetric": ".vector_metric",
+    "VectorMetricCounter": ".vector_metric_counter",
+    "VectorMetricDistribution": ".vector_metric_distribution",
+    "VectorMetricGauge": ".vector_metric_gauge",
+    "VectorMetricHistogram": ".vector_metric_histogram",
+    "VectorMetricIntervalMs": ".vector_metric_interval_ms",
+    "VectorMetricKind": ".vector_metric_kind",
+    "VectorMetricSet": ".vector_metric_set",
+    "VectorMetricSummary": ".vector_metric_summary",
+    "VectorMetricTimestamp": ".vector_metric_timestamp",
     "WeatherCode": ".weather_code",
 }
 
@@ -178,11 +216,16 @@ def __dir__():
 
 
 __all__ = [
+    "AlarmOutcome",
     "BaseModel",
+    "Bucket",
     "CycloneForecastResponse",
     "DailyConditions",
     "DailyWeatherResponse",
     "DailyWeatherResponseUnits",
+    "DetectionPoint",
+    "Distribution",
+    "EventOutcome",
     "Feature",
     "FeatureCollection",
     "FeatureGeometry",
@@ -208,15 +251,14 @@ __all__ = [
     "GftusBaseUnits",
     "GftusHourlyConditions",
     "GftusHourlyWeatherResponse",
+    "Histogram",
     "HourlyConditions",
     "HourlyWeatherResponse",
     "HourlyWeatherResponseUnits",
-    "HttpValidationError",
     "ImperialUnits",
     "LineString",
     "LineStringCoordinatesItem",
     "MetricUnits",
-    "ModelName",
     "MultiLineString",
     "MultiLineStringCoordinatesItemItem",
     "MultiPoint",
@@ -230,6 +272,13 @@ __all__ = [
     "Position2D",
     "Position3D",
     "PrecipitationType",
+    "Quantile",
+    "ReliabilityPoint",
+    "Sample",
+    "ScorecardModel",
+    "SkillByLeadPoint",
+    "SkillKpis",
+    "Summary",
     "TimeSeriesFeatureCollectionModel",
     "TimeSeriesFeatureModel",
     "TimeSeriesFeatureModelGeometry",
@@ -245,7 +294,15 @@ __all__ = [
     "TimeSeriesPropertiesModelStatic",
     "Timezone",
     "Units",
-    "ValidationError",
-    "ValidationErrorLocItem",
+    "VectorMetric",
+    "VectorMetricCounter",
+    "VectorMetricDistribution",
+    "VectorMetricGauge",
+    "VectorMetricHistogram",
+    "VectorMetricIntervalMs",
+    "VectorMetricKind",
+    "VectorMetricSet",
+    "VectorMetricSummary",
+    "VectorMetricTimestamp",
     "WeatherCode",
 ]

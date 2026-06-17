@@ -12,11 +12,15 @@ from ...core.jsonable_encoder import encode_path_param
 from ...core.parse_error import ParsingError
 from ...core.pydantic_utilities import parse_obj_as
 from ...core.request_options import RequestOptions
+from ...errors.internal_server_error import InternalServerError
+from ...errors.not_found_error import NotFoundError
+from ...errors.unauthorized_error import UnauthorizedError
 from ...errors.unprocessable_entity_error import UnprocessableEntityError
 from ...types.cyclone_forecast_response import CycloneForecastResponse
 from ...types.feature_collection import FeatureCollection
-from ...types.http_validation_error import HttpValidationError
-from ...types.model_name import ModelName
+from .types.forecasts_cone_request_model import ForecastsConeRequestModel
+from .types.forecasts_list_request_model import ForecastsListRequestModel
+from .types.forecasts_track_request_model import ForecastsTrackRequestModel
 from pydantic import ValidationError
 
 
@@ -30,7 +34,7 @@ class RawForecastsClient:
         time: typing.Optional[dt.datetime] = None,
         min_storm_category: typing.Optional[int] = None,
         basin_ids: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        model: typing.Optional[ModelName] = None,
+        model: typing.Optional[ForecastsListRequestModel] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[typing.List[CycloneForecastResponse]]:
         """
@@ -45,7 +49,7 @@ class RawForecastsClient:
 
         basin_ids : typing.Optional[typing.Union[str, typing.Sequence[str]]]
 
-        model : typing.Optional[ModelName]
+        model : typing.Optional[ForecastsListRequestModel]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -76,13 +80,46 @@ class RawForecastsClient:
                     ),
                 )
                 return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
             if _response.status_code == 422:
                 raise UnprocessableEntityError(
                     headers=dict(_response.headers),
                     body=typing.cast(
-                        HttpValidationError,
+                        typing.Any,
                         parse_obj_as(
-                            type_=HttpValidationError,  # type: ignore
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
                             object_=_response.json(),
                         ),
                     ),
@@ -102,7 +139,7 @@ class RawForecastsClient:
         *,
         time: typing.Optional[dt.datetime] = None,
         max_lead_time: typing.Optional[str] = None,
-        model: typing.Optional[ModelName] = None,
+        model: typing.Optional[ForecastsTrackRequestModel] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[FeatureCollection]:
         """
@@ -118,7 +155,7 @@ class RawForecastsClient:
         max_lead_time : typing.Optional[str]
             *Value must be > P0D*
 
-        model : typing.Optional[ModelName]
+        model : typing.Optional[ForecastsTrackRequestModel]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -148,13 +185,46 @@ class RawForecastsClient:
                     ),
                 )
                 return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
             if _response.status_code == 422:
                 raise UnprocessableEntityError(
                     headers=dict(_response.headers),
                     body=typing.cast(
-                        HttpValidationError,
+                        typing.Any,
                         parse_obj_as(
-                            type_=HttpValidationError,  # type: ignore
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
                             object_=_response.json(),
                         ),
                     ),
@@ -175,7 +245,7 @@ class RawForecastsClient:
         time: typing.Optional[dt.datetime] = None,
         max_lead_time: typing.Optional[str] = None,
         smooth_cone: typing.Optional[bool] = None,
-        model: typing.Optional[ModelName] = None,
+        model: typing.Optional[ForecastsConeRequestModel] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[FeatureCollection]:
         """
@@ -193,7 +263,7 @@ class RawForecastsClient:
 
         smooth_cone : typing.Optional[bool]
 
-        model : typing.Optional[ModelName]
+        model : typing.Optional[ForecastsConeRequestModel]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -224,13 +294,46 @@ class RawForecastsClient:
                     ),
                 )
                 return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
             if _response.status_code == 422:
                 raise UnprocessableEntityError(
                     headers=dict(_response.headers),
                     body=typing.cast(
-                        HttpValidationError,
+                        typing.Any,
                         parse_obj_as(
-                            type_=HttpValidationError,  # type: ignore
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
                             object_=_response.json(),
                         ),
                     ),
@@ -255,7 +358,7 @@ class AsyncRawForecastsClient:
         time: typing.Optional[dt.datetime] = None,
         min_storm_category: typing.Optional[int] = None,
         basin_ids: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        model: typing.Optional[ModelName] = None,
+        model: typing.Optional[ForecastsListRequestModel] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[typing.List[CycloneForecastResponse]]:
         """
@@ -270,7 +373,7 @@ class AsyncRawForecastsClient:
 
         basin_ids : typing.Optional[typing.Union[str, typing.Sequence[str]]]
 
-        model : typing.Optional[ModelName]
+        model : typing.Optional[ForecastsListRequestModel]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -301,13 +404,46 @@ class AsyncRawForecastsClient:
                     ),
                 )
                 return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
             if _response.status_code == 422:
                 raise UnprocessableEntityError(
                     headers=dict(_response.headers),
                     body=typing.cast(
-                        HttpValidationError,
+                        typing.Any,
                         parse_obj_as(
-                            type_=HttpValidationError,  # type: ignore
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
                             object_=_response.json(),
                         ),
                     ),
@@ -327,7 +463,7 @@ class AsyncRawForecastsClient:
         *,
         time: typing.Optional[dt.datetime] = None,
         max_lead_time: typing.Optional[str] = None,
-        model: typing.Optional[ModelName] = None,
+        model: typing.Optional[ForecastsTrackRequestModel] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[FeatureCollection]:
         """
@@ -343,7 +479,7 @@ class AsyncRawForecastsClient:
         max_lead_time : typing.Optional[str]
             *Value must be > P0D*
 
-        model : typing.Optional[ModelName]
+        model : typing.Optional[ForecastsTrackRequestModel]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -373,13 +509,46 @@ class AsyncRawForecastsClient:
                     ),
                 )
                 return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
             if _response.status_code == 422:
                 raise UnprocessableEntityError(
                     headers=dict(_response.headers),
                     body=typing.cast(
-                        HttpValidationError,
+                        typing.Any,
                         parse_obj_as(
-                            type_=HttpValidationError,  # type: ignore
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
                             object_=_response.json(),
                         ),
                     ),
@@ -400,7 +569,7 @@ class AsyncRawForecastsClient:
         time: typing.Optional[dt.datetime] = None,
         max_lead_time: typing.Optional[str] = None,
         smooth_cone: typing.Optional[bool] = None,
-        model: typing.Optional[ModelName] = None,
+        model: typing.Optional[ForecastsConeRequestModel] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[FeatureCollection]:
         """
@@ -418,7 +587,7 @@ class AsyncRawForecastsClient:
 
         smooth_cone : typing.Optional[bool]
 
-        model : typing.Optional[ModelName]
+        model : typing.Optional[ForecastsConeRequestModel]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -449,13 +618,46 @@ class AsyncRawForecastsClient:
                     ),
                 )
                 return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
             if _response.status_code == 422:
                 raise UnprocessableEntityError(
                     headers=dict(_response.headers),
                     body=typing.cast(
-                        HttpValidationError,
+                        typing.Any,
                         parse_obj_as(
-                            type_=HttpValidationError,  # type: ignore
+                            type_=typing.Any,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        typing.Any,
+                        parse_obj_as(
+                            type_=typing.Any,  # type: ignore
                             object_=_response.json(),
                         ),
                     ),
