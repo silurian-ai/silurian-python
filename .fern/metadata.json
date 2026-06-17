@@ -5,7 +5,7 @@
   "generatorConfig": {
     "client_class_name": "Earth"
   },
-  "originGitCommit": "9bd8e0a8455c5ab8947019723a761a1bf6406edc",
+  "originGitCommit": "e4438f9a22a9f803f4b1534535544a3d7bde6f29",
   "originGitCommitIsDirty": false,
   "invokedBy": "ci",
   "requestedVersion": "0.0.20",
