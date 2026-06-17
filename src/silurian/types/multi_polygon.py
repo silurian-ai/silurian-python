@@ -12,7 +12,7 @@ class MultiPolygon(UniversalBaseModel):
     MultiPolygon Model
     """
 
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     coordinates: typing.List[typing.List[typing.List[MultiPolygonCoordinatesItemItemItem]]]
 
     if IS_PYDANTIC_V2:

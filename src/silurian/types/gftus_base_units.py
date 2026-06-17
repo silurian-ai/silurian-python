@@ -14,9 +14,11 @@ class GftusBaseUnits(UniversalBaseModel):
     humidity: typing.Optional[str] = None
     wind_speed: str
     wind_direction: typing.Optional[str] = None
-    wind_speed_80_m: typing_extensions.Annotated[str, FieldMetadata(alias="wind_speed_80m")]
+    wind_speed_80_m: typing_extensions.Annotated[
+        str, FieldMetadata(alias="wind_speed_80m"), pydantic.Field(alias="wind_speed_80m")
+    ]
     wind_direction_80_m: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="wind_direction_80m")
+        typing.Optional[str], FieldMetadata(alias="wind_direction_80m"), pydantic.Field(alias="wind_direction_80m")
     ] = None
     dewpoint_temperature: str
     feels_like_temperature: str

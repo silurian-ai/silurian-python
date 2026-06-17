@@ -16,7 +16,7 @@ class TimeSeriesFeatureModel(UniversalBaseModel):
     GeoJSON Feature with time-series properties.
     """
 
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     type: typing.Literal["Feature"] = "Feature"
     geometry: typing.Optional[TimeSeriesFeatureModelGeometry] = None
     properties: typing.Optional[TimeSeriesPropertiesModel] = None

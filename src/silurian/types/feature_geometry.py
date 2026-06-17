@@ -5,6 +5,7 @@ from __future__ import annotations
 import typing
 
 import pydantic
+import typing_extensions
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel, update_forward_refs
 from .line_string_coordinates_item import LineStringCoordinatesItem
 from .multi_line_string_coordinates_item_item import MultiLineStringCoordinatesItemItem
@@ -16,7 +17,7 @@ from .polygon_coordinates_item_item import PolygonCoordinatesItemItem
 
 class FeatureGeometry_GeometryCollection(UniversalBaseModel):
     type: typing.Literal["GeometryCollection"] = "GeometryCollection"
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     geometries: typing.List["GeometryCollectionGeometriesItem"]
 
     if IS_PYDANTIC_V2:
@@ -29,12 +30,9 @@ class FeatureGeometry_GeometryCollection(UniversalBaseModel):
             extra = pydantic.Extra.allow
 
 
-from .geometry_collection_geometries_item import GeometryCollectionGeometriesItem  # noqa: E402, I001
-
-
 class FeatureGeometry_LineString(UniversalBaseModel):
     type: typing.Literal["LineString"] = "LineString"
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     coordinates: typing.List[LineStringCoordinatesItem]
 
     if IS_PYDANTIC_V2:
@@ -49,7 +47,7 @@ class FeatureGeometry_LineString(UniversalBaseModel):
 
 class FeatureGeometry_MultiLineString(UniversalBaseModel):
     type: typing.Literal["MultiLineString"] = "MultiLineString"
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     coordinates: typing.List[typing.List[MultiLineStringCoordinatesItemItem]]
 
     if IS_PYDANTIC_V2:
@@ -64,7 +62,7 @@ class FeatureGeometry_MultiLineString(UniversalBaseModel):
 
 class FeatureGeometry_MultiPoint(UniversalBaseModel):
     type: typing.Literal["MultiPoint"] = "MultiPoint"
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     coordinates: typing.List[MultiPointCoordinatesItem]
 
     if IS_PYDANTIC_V2:
@@ -79,7 +77,7 @@ class FeatureGeometry_MultiPoint(UniversalBaseModel):
 
 class FeatureGeometry_MultiPolygon(UniversalBaseModel):
     type: typing.Literal["MultiPolygon"] = "MultiPolygon"
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     coordinates: typing.List[typing.List[typing.List[MultiPolygonCoordinatesItemItemItem]]]
 
     if IS_PYDANTIC_V2:
@@ -94,7 +92,7 @@ class FeatureGeometry_MultiPolygon(UniversalBaseModel):
 
 class FeatureGeometry_Point(UniversalBaseModel):
     type: typing.Literal["Point"] = "Point"
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     coordinates: PointCoordinates
 
     if IS_PYDANTIC_V2:
@@ -109,7 +107,7 @@ class FeatureGeometry_Point(UniversalBaseModel):
 
 class FeatureGeometry_Polygon(UniversalBaseModel):
     type: typing.Literal["Polygon"] = "Polygon"
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     coordinates: typing.List[typing.List[PolygonCoordinatesItemItem]]
 
     if IS_PYDANTIC_V2:
@@ -122,13 +120,20 @@ class FeatureGeometry_Polygon(UniversalBaseModel):
             extra = pydantic.Extra.allow
 
 
-FeatureGeometry = typing.Union[
-    FeatureGeometry_GeometryCollection,
-    FeatureGeometry_LineString,
-    FeatureGeometry_MultiLineString,
-    FeatureGeometry_MultiPoint,
-    FeatureGeometry_MultiPolygon,
-    FeatureGeometry_Point,
-    FeatureGeometry_Polygon,
+FeatureGeometry = typing_extensions.Annotated[
+    typing.Union[
+        FeatureGeometry_GeometryCollection,
+        FeatureGeometry_LineString,
+        FeatureGeometry_MultiLineString,
+        FeatureGeometry_MultiPoint,
+        FeatureGeometry_MultiPolygon,
+        FeatureGeometry_Point,
+        FeatureGeometry_Polygon,
+    ],
+    pydantic.Field(discriminator="type"),
 ]
-update_forward_refs(FeatureGeometry_GeometryCollection)
+from .geometry_collection_geometries_item import GeometryCollectionGeometriesItem  # noqa: E402, I001
+
+update_forward_refs(
+    FeatureGeometry_GeometryCollection, GeometryCollectionGeometriesItem=GeometryCollectionGeometriesItem
+)

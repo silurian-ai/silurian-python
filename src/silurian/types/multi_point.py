@@ -12,7 +12,7 @@ class MultiPoint(UniversalBaseModel):
     MultiPoint Model
     """
 
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     coordinates: typing.List[MultiPointCoordinatesItem]
 
     if IS_PYDANTIC_V2:

@@ -12,7 +12,7 @@ class LineString(UniversalBaseModel):
     LineString Model
     """
 
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     coordinates: typing.List[LineStringCoordinatesItem]
 
     if IS_PYDANTIC_V2:

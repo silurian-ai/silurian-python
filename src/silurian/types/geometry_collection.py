@@ -13,7 +13,7 @@ class GeometryCollection(UniversalBaseModel):
     GeometryCollection Model
     """
 
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     geometries: typing.List["GeometryCollectionGeometriesItem"]
 
     if IS_PYDANTIC_V2:
@@ -28,4 +28,4 @@ class GeometryCollection(UniversalBaseModel):
 
 from .geometry_collection_geometries_item import GeometryCollectionGeometriesItem  # noqa: E402, I001
 
-update_forward_refs(GeometryCollection)
+update_forward_refs(GeometryCollection, GeometryCollectionGeometriesItem=GeometryCollectionGeometriesItem)

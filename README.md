@@ -10,6 +10,7 @@ The Silurian Python library provides convenient access to the Silurian APIs from
 - [Installation](#installation)
 - [Reference](#reference)
 - [Usage](#usage)
+- [Environments](#environments)
 - [Async Client](#async-client)
 - [Exception Handling](#exception-handling)
 - [Advanced](#advanced)
@@ -34,21 +35,32 @@ A full reference for this library is available [here](https://github.com/siluria
 Instantiate and use the client with the following:
 
 ```python
+from silurian import Earth
 import datetime
 
-from silurian import Earth
-
 client = Earth(
-    api_key="YOUR_API_KEY",
+    api_key="<value>",
 )
+
 client.weather.past.forecast.hourly(
     latitude=47.6061,
     longitude=-122.3328,
-    time=datetime.datetime.fromisoformat(
-        "2024-01-01 00:00:00+00:00",
-    ),
+    time=datetime.datetime.fromisoformat("2024-01-01T00:00:00+00:00"),
     timezone="local",
     units="metric",
+)
+```
+
+## Environments
+
+This SDK allows you to configure different environments for API requests.
+
+```python
+from silurian import Earth
+from silurian.environment import EarthEnvironment
+
+client = Earth(
+    environment=EarthEnvironment.PRODUCTION,
 )
 ```
 
@@ -63,7 +75,7 @@ import datetime
 from silurian import AsyncEarth
 
 client = AsyncEarth(
-    api_key="YOUR_API_KEY",
+    api_key="<value>",
 )
 
 
@@ -71,9 +83,7 @@ async def main() -> None:
     await client.weather.past.forecast.hourly(
         latitude=47.6061,
         longitude=-122.3328,
-        time=datetime.datetime.fromisoformat(
-            "2024-01-01 00:00:00+00:00",
-        ),
+        time=datetime.datetime.fromisoformat("2024-01-01T00:00:00+00:00"),
         timezone="local",
         units="metric",
     )
@@ -107,11 +117,10 @@ The `.with_raw_response` property returns a "raw" client that can be used to acc
 ```python
 from silurian import Earth
 
-client = Earth(
-    ...,
-)
+client = Earth(...)
 response = client.weather.past.forecast.with_raw_response.hourly(...)
 print(response.headers)  # access the response headers
+print(response.status_code)  # access the response status code
 print(response.data)  # access the underlying object
 ```
 
@@ -121,11 +130,21 @@ The SDK is instrumented with automatic retries with exponential backoff. A reque
 as the request is deemed retryable and the number of retry attempts has not grown larger than the configured
 retry limit (default: 2).
 
-A request is deemed retryable when any of the following HTTP status codes is returned:
+Which status codes are retried depends on the `retryStatusCodes` generator configuration:
 
+**`legacy`** (current default): retries on
 - [408](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408) (Timeout)
+- [409](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409) (Conflict)
 - [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (Too Many Requests)
-- [5XX](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500) (Internal Server Errors)
+- [5XX](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#server_error_responses) (All server errors, including 500)
+
+**`recommended`**: retries on
+- [408](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408) (Timeout)
+- [409](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409) (Conflict)
+- [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (Too Many Requests)
+- [502](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502) (Bad Gateway)
+- [503](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503) (Service Unavailable)
+- [504](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504) (Gateway Timeout)
 
 Use the `max_retries` request option to configure this behavior.
 
@@ -140,14 +159,9 @@ client.weather.past.forecast.hourly(..., request_options={
 The SDK defaults to a 60 second timeout. You can configure this with a timeout option at the client or request level.
 
 ```python
-
 from silurian import Earth
 
-client = Earth(
-    ...,
-    timeout=20.0,
-)
-
+client = Earth(..., timeout=20.0)
 
 # Override timeout for a specific method
 client.weather.past.forecast.hourly(..., request_options={

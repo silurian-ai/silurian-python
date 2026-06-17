@@ -16,9 +16,11 @@ class GftusHourlyConditions(UniversalBaseModel):
     wind_speed: typing.Optional[float] = None
     wind_gust: typing.Optional[float] = None
     wind_direction: typing.Optional[float] = None
-    wind_speed_80_m: typing_extensions.Annotated[typing.Optional[float], FieldMetadata(alias="wind_speed_80m")] = None
+    wind_speed_80_m: typing_extensions.Annotated[
+        typing.Optional[float], FieldMetadata(alias="wind_speed_80m"), pydantic.Field(alias="wind_speed_80m")
+    ] = None
     wind_direction_80_m: typing_extensions.Annotated[
-        typing.Optional[float], FieldMetadata(alias="wind_direction_80m")
+        typing.Optional[float], FieldMetadata(alias="wind_direction_80m"), pydantic.Field(alias="wind_direction_80m")
     ] = None
     dewpoint_temperature: typing.Optional[float] = None
     feels_like_temperature: typing.Optional[float] = None

@@ -8,7 +8,8 @@ from ...core.api_error import ApiError
 from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.datetime_utils import serialize_datetime
 from ...core.http_response import AsyncHttpResponse, HttpResponse
-from ...core.jsonable_encoder import jsonable_encoder
+from ...core.jsonable_encoder import encode_path_param
+from ...core.parse_error import ParsingError
 from ...core.pydantic_utilities import parse_obj_as
 from ...core.request_options import RequestOptions
 from ...errors.unprocessable_entity_error import UnprocessableEntityError
@@ -16,6 +17,7 @@ from ...types.cyclone_forecast_response import CycloneForecastResponse
 from ...types.feature_collection import FeatureCollection
 from ...types.http_validation_error import HttpValidationError
 from ...types.model_name import ModelName
+from pydantic import ValidationError
 
 
 class RawForecastsClient:
@@ -88,6 +90,10 @@ class RawForecastsClient:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     def track(
@@ -123,7 +129,7 @@ class RawForecastsClient:
             Successful Response
         """
         _response = self._client_wrapper.httpx_client.request(
-            f"cyclones/forecasts/{jsonable_encoder(storm_id)}/track",
+            f"cyclones/forecasts/{encode_path_param(storm_id)}/track",
             method="GET",
             params={
                 "time": serialize_datetime(time) if time is not None else None,
@@ -156,6 +162,10 @@ class RawForecastsClient:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     def cone(
@@ -194,7 +204,7 @@ class RawForecastsClient:
             Successful Response
         """
         _response = self._client_wrapper.httpx_client.request(
-            f"cyclones/forecasts/{jsonable_encoder(storm_id)}/cone",
+            f"cyclones/forecasts/{encode_path_param(storm_id)}/cone",
             method="GET",
             params={
                 "time": serialize_datetime(time) if time is not None else None,
@@ -228,6 +238,10 @@ class RawForecastsClient:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
 
@@ -301,6 +315,10 @@ class AsyncRawForecastsClient:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     async def track(
@@ -336,7 +354,7 @@ class AsyncRawForecastsClient:
             Successful Response
         """
         _response = await self._client_wrapper.httpx_client.request(
-            f"cyclones/forecasts/{jsonable_encoder(storm_id)}/track",
+            f"cyclones/forecasts/{encode_path_param(storm_id)}/track",
             method="GET",
             params={
                 "time": serialize_datetime(time) if time is not None else None,
@@ -369,6 +387,10 @@ class AsyncRawForecastsClient:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     async def cone(
@@ -407,7 +429,7 @@ class AsyncRawForecastsClient:
             Successful Response
         """
         _response = await self._client_wrapper.httpx_client.request(
-            f"cyclones/forecasts/{jsonable_encoder(storm_id)}/cone",
+            f"cyclones/forecasts/{encode_path_param(storm_id)}/cone",
             method="GET",
             params={
                 "time": serialize_datetime(time) if time is not None else None,
@@ -441,4 +463,8 @@ class AsyncRawForecastsClient:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)

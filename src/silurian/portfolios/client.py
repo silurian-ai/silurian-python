@@ -119,6 +119,8 @@ class PortfoliosClient:
         )
         client.portfolios.forecasts(
             portfolio_id="portfolio_id",
+            id=["id"],
+            variables=["variables"],
             init_time=datetime.datetime.fromisoformat(
                 "2024-01-15 09:30:00+00:00",
             ),
@@ -173,6 +175,8 @@ class PortfoliosClient:
         )
         client.portfolios.observations(
             portfolio_id="portfolio_id",
+            id=["id"],
+            variables=["variables"],
             valid_time_start=datetime.datetime.fromisoformat(
                 "2024-01-15 09:30:00+00:00",
             ),
@@ -352,6 +356,8 @@ class AsyncPortfoliosClient:
         async def main() -> None:
             await client.portfolios.forecasts(
                 portfolio_id="portfolio_id",
+                id=["id"],
+                variables=["variables"],
                 init_time=datetime.datetime.fromisoformat(
                     "2024-01-15 09:30:00+00:00",
                 ),
@@ -413,6 +419,8 @@ class AsyncPortfoliosClient:
         async def main() -> None:
             await client.portfolios.observations(
                 portfolio_id="portfolio_id",
+                id=["id"],
+                variables=["variables"],
                 valid_time_start=datetime.datetime.fromisoformat(
                     "2024-01-15 09:30:00+00:00",
                 ),

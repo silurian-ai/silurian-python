@@ -5,6 +5,7 @@ from __future__ import annotations
 import typing
 
 import pydantic
+import typing_extensions
 from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel, update_forward_refs
 from .line_string_coordinates_item import LineStringCoordinatesItem
 from .multi_line_string_coordinates_item_item import MultiLineStringCoordinatesItemItem
@@ -16,7 +17,7 @@ from .polygon_coordinates_item_item import PolygonCoordinatesItemItem
 
 class GeometryCollectionGeometriesItem_GeometryCollection(UniversalBaseModel):
     type: typing.Literal["GeometryCollection"] = "GeometryCollection"
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     geometries: typing.List["GeometryCollectionGeometriesItem"]
 
     if IS_PYDANTIC_V2:
@@ -31,7 +32,7 @@ class GeometryCollectionGeometriesItem_GeometryCollection(UniversalBaseModel):
 
 class GeometryCollectionGeometriesItem_LineString(UniversalBaseModel):
     type: typing.Literal["LineString"] = "LineString"
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     coordinates: typing.List[LineStringCoordinatesItem]
 
     if IS_PYDANTIC_V2:
@@ -46,7 +47,7 @@ class GeometryCollectionGeometriesItem_LineString(UniversalBaseModel):
 
 class GeometryCollectionGeometriesItem_MultiLineString(UniversalBaseModel):
     type: typing.Literal["MultiLineString"] = "MultiLineString"
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     coordinates: typing.List[typing.List[MultiLineStringCoordinatesItemItem]]
 
     if IS_PYDANTIC_V2:
@@ -61,7 +62,7 @@ class GeometryCollectionGeometriesItem_MultiLineString(UniversalBaseModel):
 
 class GeometryCollectionGeometriesItem_MultiPoint(UniversalBaseModel):
     type: typing.Literal["MultiPoint"] = "MultiPoint"
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     coordinates: typing.List[MultiPointCoordinatesItem]
 
     if IS_PYDANTIC_V2:
@@ -76,7 +77,7 @@ class GeometryCollectionGeometriesItem_MultiPoint(UniversalBaseModel):
 
 class GeometryCollectionGeometriesItem_MultiPolygon(UniversalBaseModel):
     type: typing.Literal["MultiPolygon"] = "MultiPolygon"
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     coordinates: typing.List[typing.List[typing.List[MultiPolygonCoordinatesItemItemItem]]]
 
     if IS_PYDANTIC_V2:
@@ -91,7 +92,7 @@ class GeometryCollectionGeometriesItem_MultiPolygon(UniversalBaseModel):
 
 class GeometryCollectionGeometriesItem_Point(UniversalBaseModel):
     type: typing.Literal["Point"] = "Point"
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     coordinates: PointCoordinates
 
     if IS_PYDANTIC_V2:
@@ -106,7 +107,7 @@ class GeometryCollectionGeometriesItem_Point(UniversalBaseModel):
 
 class GeometryCollectionGeometriesItem_Polygon(UniversalBaseModel):
     type: typing.Literal["Polygon"] = "Polygon"
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     coordinates: typing.List[typing.List[PolygonCoordinatesItemItem]]
 
     if IS_PYDANTIC_V2:
@@ -119,13 +120,19 @@ class GeometryCollectionGeometriesItem_Polygon(UniversalBaseModel):
             extra = pydantic.Extra.allow
 
 
-GeometryCollectionGeometriesItem = typing.Union[
-    GeometryCollectionGeometriesItem_GeometryCollection,
-    GeometryCollectionGeometriesItem_LineString,
-    GeometryCollectionGeometriesItem_MultiLineString,
-    GeometryCollectionGeometriesItem_MultiPoint,
-    GeometryCollectionGeometriesItem_MultiPolygon,
-    GeometryCollectionGeometriesItem_Point,
-    GeometryCollectionGeometriesItem_Polygon,
+GeometryCollectionGeometriesItem = typing_extensions.Annotated[
+    typing.Union[
+        GeometryCollectionGeometriesItem_GeometryCollection,
+        GeometryCollectionGeometriesItem_LineString,
+        GeometryCollectionGeometriesItem_MultiLineString,
+        GeometryCollectionGeometriesItem_MultiPoint,
+        GeometryCollectionGeometriesItem_MultiPolygon,
+        GeometryCollectionGeometriesItem_Point,
+        GeometryCollectionGeometriesItem_Polygon,
+    ],
+    pydantic.Field(discriminator="type"),
 ]
-update_forward_refs(GeometryCollectionGeometriesItem_GeometryCollection)
+update_forward_refs(
+    GeometryCollectionGeometriesItem_GeometryCollection,
+    GeometryCollectionGeometriesItem=GeometryCollectionGeometriesItem,
+)

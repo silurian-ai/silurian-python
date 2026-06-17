@@ -4,4 +4,4 @@ import typing
 
 from .base_model import BaseModel
 
-TimeSeriesPropertiesModelStatic = typing.Union[typing.Dict[str, typing.Optional[typing.Any]], BaseModel]
+TimeSeriesPropertiesModelStatic = typing.Union[typing.Dict[str, typing.Any], BaseModel]

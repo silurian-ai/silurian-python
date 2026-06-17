@@ -16,7 +16,7 @@ class Feature(UniversalBaseModel):
     Feature Model
     """
 
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     type: typing.Literal["Feature"] = "Feature"
     geometry: typing.Optional[FeatureGeometry] = None
     properties: typing.Optional[FeatureProperties] = None

@@ -14,7 +14,7 @@ class FeatureCollection(UniversalBaseModel):
     FeatureCollection Model
     """
 
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     type: typing.Literal["FeatureCollection"] = "FeatureCollection"
     features: typing.List[Feature]
 

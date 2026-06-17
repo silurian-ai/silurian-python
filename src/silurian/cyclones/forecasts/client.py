@@ -71,6 +71,7 @@ class ForecastsClient:
                 "2024-01-15 09:30:00+00:00",
             ),
             min_storm_category=1,
+            basin_ids=["basin_ids"],
             model="OFCL",
         )
         """
@@ -267,6 +268,7 @@ class AsyncForecastsClient:
                     "2024-01-15 09:30:00+00:00",
                 ),
                 min_storm_category=1,
+                basin_ids=["basin_ids"],
                 model="OFCL",
             )
 

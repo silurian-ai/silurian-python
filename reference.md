@@ -1,6 +1,6 @@
 # Reference
 ## Portfolios
-<details><summary><code>client.portfolios.<a href="src/silurian/portfolios/client.py">features</a>(...)</code></summary>
+<details><summary><code>client.portfolios.<a href="src/silurian/portfolios/client.py">features</a>(...) -> FeatureCollection</code></summary>
 <dl>
 <dd>
 
@@ -28,10 +28,13 @@ Return a GeoJSON FeatureCollection of features for a portfolio.
 
 ```python
 from silurian import Earth
+from silurian.environment import EarthEnvironment
 
 client = Earth(
-    api_key="YOUR_API_KEY",
+    api_key="<value>",
+    environment=EarthEnvironment.PRODUCTION,
 )
+
 client.portfolios.features(
     portfolio_id="portfolio_id",
     x=1,
@@ -106,7 +109,7 @@ client.portfolios.features(
 </dl>
 </details>
 
-<details><summary><code>client.portfolios.<a href="src/silurian/portfolios/client.py">forecasts</a>(...)</code></summary>
+<details><summary><code>client.portfolios.<a href="src/silurian/portfolios/client.py">forecasts</a>(...) -> TimeSeriesFeatureCollectionModel</code></summary>
 <dl>
 <dd>
 
@@ -133,18 +136,24 @@ Return a GeoJSON FeatureCollection of forecasts for a portfolio.
 <dd>
 
 ```python
+from silurian import Earth
+from silurian.environment import EarthEnvironment
 import datetime
 
-from silurian import Earth
-
 client = Earth(
-    api_key="YOUR_API_KEY",
+    api_key="<value>",
+    environment=EarthEnvironment.PRODUCTION,
 )
+
 client.portfolios.forecasts(
     portfolio_id="portfolio_id",
-    init_time=datetime.datetime.fromisoformat(
-        "2024-01-15 09:30:00+00:00",
-    ),
+    id=[
+        "id"
+    ],
+    variables=[
+        "variables"
+    ],
+    init_time=datetime.datetime.fromisoformat("2024-01-15T09:30:00+00:00"),
 )
 
 ```
@@ -169,7 +178,7 @@ client.portfolios.forecasts(
 <dl>
 <dd>
 
-**init_time:** `dt.datetime` 
+**init_time:** `datetime.datetime` 
     
 </dd>
 </dl>
@@ -205,7 +214,7 @@ client.portfolios.forecasts(
 </dl>
 </details>
 
-<details><summary><code>client.portfolios.<a href="src/silurian/portfolios/client.py">observations</a>(...)</code></summary>
+<details><summary><code>client.portfolios.<a href="src/silurian/portfolios/client.py">observations</a>(...) -> TimeSeriesFeatureCollectionModel</code></summary>
 <dl>
 <dd>
 
@@ -232,21 +241,25 @@ Return a GeoJSON FeatureCollection of observations for a portfolio.
 <dd>
 
 ```python
+from silurian import Earth
+from silurian.environment import EarthEnvironment
 import datetime
 
-from silurian import Earth
-
 client = Earth(
-    api_key="YOUR_API_KEY",
+    api_key="<value>",
+    environment=EarthEnvironment.PRODUCTION,
 )
+
 client.portfolios.observations(
     portfolio_id="portfolio_id",
-    valid_time_start=datetime.datetime.fromisoformat(
-        "2024-01-15 09:30:00+00:00",
-    ),
-    valid_time_end=datetime.datetime.fromisoformat(
-        "2024-01-15 09:30:00+00:00",
-    ),
+    id=[
+        "id"
+    ],
+    variables=[
+        "variables"
+    ],
+    valid_time_start=datetime.datetime.fromisoformat("2024-01-15T09:30:00+00:00"),
+    valid_time_end=datetime.datetime.fromisoformat("2024-01-15T09:30:00+00:00"),
 )
 
 ```
@@ -271,7 +284,7 @@ client.portfolios.observations(
 <dl>
 <dd>
 
-**valid_time_start:** `dt.datetime` 
+**valid_time_start:** `datetime.datetime` 
     
 </dd>
 </dl>
@@ -279,7 +292,7 @@ client.portfolios.observations(
 <dl>
 <dd>
 
-**valid_time_end:** `dt.datetime` 
+**valid_time_end:** `datetime.datetime` 
     
 </dd>
 </dl>
@@ -315,7 +328,7 @@ client.portfolios.observations(
 </dl>
 </details>
 
-<details><summary><code>client.portfolios.<a href="src/silurian/portfolios/client.py">init_time</a>(...)</code></summary>
+<details><summary><code>client.portfolios.<a href="src/silurian/portfolios/client.py">init_time</a>(...) -> datetime.datetime</code></summary>
 <dl>
 <dd>
 
@@ -342,18 +355,18 @@ Return the latest initialization time for a portfolio.
 <dd>
 
 ```python
+from silurian import Earth
+from silurian.environment import EarthEnvironment
 import datetime
 
-from silurian import Earth
-
 client = Earth(
-    api_key="YOUR_API_KEY",
+    api_key="<value>",
+    environment=EarthEnvironment.PRODUCTION,
 )
+
 client.portfolios.init_time(
     portfolio_id="portfolio_id",
-    time=datetime.datetime.fromisoformat(
-        "2024-01-15 09:30:00+00:00",
-    ),
+    time=datetime.datetime.fromisoformat("2024-01-15T09:30:00+00:00"),
 )
 
 ```
@@ -378,7 +391,7 @@ client.portfolios.init_time(
 <dl>
 <dd>
 
-**time:** `dt.datetime` 
+**time:** `datetime.datetime` 
     
 </dd>
 </dl>
@@ -399,7 +412,7 @@ client.portfolios.init_time(
 </details>
 
 ## Cyclones Forecasts
-<details><summary><code>client.cyclones.forecasts.<a href="src/silurian/cyclones/forecasts/client.py">list</a>(...)</code></summary>
+<details><summary><code>client.cyclones.forecasts.<a href="src/silurian/cyclones/forecasts/client.py">list</a>(...) -> typing.List[CycloneForecastResponse]</code></summary>
 <dl>
 <dd>
 
@@ -426,18 +439,21 @@ Query the available cyclone forecasts for a particular time
 <dd>
 
 ```python
+from silurian import Earth
+from silurian.environment import EarthEnvironment
 import datetime
 
-from silurian import Earth
-
 client = Earth(
-    api_key="YOUR_API_KEY",
+    api_key="<value>",
+    environment=EarthEnvironment.PRODUCTION,
 )
+
 client.cyclones.forecasts.list(
-    time=datetime.datetime.fromisoformat(
-        "2024-01-15 09:30:00+00:00",
-    ),
+    time=datetime.datetime.fromisoformat("2024-01-15T09:30:00+00:00"),
     min_storm_category=1,
+    basin_ids=[
+        "basin_ids"
+    ],
     model="OFCL",
 )
 
@@ -455,7 +471,7 @@ client.cyclones.forecasts.list(
 <dl>
 <dd>
 
-**time:** `typing.Optional[dt.datetime]` — *Default value: (current time) - Default time zone: UTC*
+**time:** `typing.Optional[datetime.datetime]` — *Default value: (current time) - Default time zone: UTC*
     
 </dd>
 </dl>
@@ -499,7 +515,7 @@ client.cyclones.forecasts.list(
 </dl>
 </details>
 
-<details><summary><code>client.cyclones.forecasts.<a href="src/silurian/cyclones/forecasts/client.py">track</a>(...)</code></summary>
+<details><summary><code>client.cyclones.forecasts.<a href="src/silurian/cyclones/forecasts/client.py">track</a>(...) -> FeatureCollection</code></summary>
 <dl>
 <dd>
 
@@ -526,18 +542,18 @@ Get cyclone tracks in GeoJSON (MF-GeoJSON) format
 <dd>
 
 ```python
+from silurian import Earth
+from silurian.environment import EarthEnvironment
 import datetime
 
-from silurian import Earth
-
 client = Earth(
-    api_key="YOUR_API_KEY",
+    api_key="<value>",
+    environment=EarthEnvironment.PRODUCTION,
 )
+
 client.cyclones.forecasts.track(
     storm_id="storm_id",
-    time=datetime.datetime.fromisoformat(
-        "2024-01-15 09:30:00+00:00",
-    ),
+    time=datetime.datetime.fromisoformat("2024-01-15T09:30:00+00:00"),
     max_lead_time="max_lead_time",
     model="OFCL",
 )
@@ -564,7 +580,7 @@ client.cyclones.forecasts.track(
 <dl>
 <dd>
 
-**time:** `typing.Optional[dt.datetime]` — *Default value: (current time) - Default time zone: UTC*
+**time:** `typing.Optional[datetime.datetime]` — *Default value: (current time) - Default time zone: UTC*
     
 </dd>
 </dl>
@@ -600,7 +616,7 @@ client.cyclones.forecasts.track(
 </dl>
 </details>
 
-<details><summary><code>client.cyclones.forecasts.<a href="src/silurian/cyclones/forecasts/client.py">cone</a>(...)</code></summary>
+<details><summary><code>client.cyclones.forecasts.<a href="src/silurian/cyclones/forecasts/client.py">cone</a>(...) -> FeatureCollection</code></summary>
 <dl>
 <dd>
 
@@ -627,18 +643,18 @@ Get cyclone forecast cone in GeoJSON format
 <dd>
 
 ```python
+from silurian import Earth
+from silurian.environment import EarthEnvironment
 import datetime
 
-from silurian import Earth
-
 client = Earth(
-    api_key="YOUR_API_KEY",
+    api_key="<value>",
+    environment=EarthEnvironment.PRODUCTION,
 )
+
 client.cyclones.forecasts.cone(
     storm_id="storm_id",
-    time=datetime.datetime.fromisoformat(
-        "2024-01-15 09:30:00+00:00",
-    ),
+    time=datetime.datetime.fromisoformat("2024-01-15T09:30:00+00:00"),
     max_lead_time="max_lead_time",
     smooth_cone=True,
     model="OFCL",
@@ -666,7 +682,7 @@ client.cyclones.forecasts.cone(
 <dl>
 <dd>
 
-**time:** `typing.Optional[dt.datetime]` — *Default value: (current time) - Default time zone: UTC*
+**time:** `typing.Optional[datetime.datetime]` — *Default value: (current time) - Default time zone: UTC*
     
 </dd>
 </dl>
@@ -711,7 +727,7 @@ client.cyclones.forecasts.cone(
 </details>
 
 ## Weather Forecast
-<details><summary><code>client.weather.forecast.<a href="src/silurian/weather/forecast/client.py">daily</a>(...)</code></summary>
+<details><summary><code>client.weather.forecast.<a href="src/silurian/weather/forecast/client.py">daily</a>(...) -> DailyWeatherResponse</code></summary>
 <dl>
 <dd>
 
@@ -741,13 +757,17 @@ it is unclear how exactly users will understand "UTC".
 
 ```python
 from silurian import Earth
+from silurian.environment import EarthEnvironment
 
 client = Earth(
-    api_key="YOUR_API_KEY",
+    api_key="<value>",
+    environment=EarthEnvironment.PRODUCTION,
 )
+
 client.weather.forecast.daily(
     latitude=47.6061,
     longitude=-122.3328,
+    timezone="local",
     units="metric",
 )
 
@@ -781,7 +801,7 @@ client.weather.forecast.daily(
 <dl>
 <dd>
 
-**timezone:** `typing.Optional[typing.Literal["local"]]` 
+**timezone:** `typing.Optional[typing.Literal]` 
     
 </dd>
 </dl>
@@ -809,7 +829,7 @@ client.weather.forecast.daily(
 </dl>
 </details>
 
-<details><summary><code>client.weather.forecast.<a href="src/silurian/weather/forecast/client.py">hourly</a>(...)</code></summary>
+<details><summary><code>client.weather.forecast.<a href="src/silurian/weather/forecast/client.py">hourly</a>(...) -> HourlyWeatherResponse</code></summary>
 <dl>
 <dd>
 
@@ -837,10 +857,13 @@ Get hourly weather forecast for a specific location
 
 ```python
 from silurian import Earth
+from silurian.environment import EarthEnvironment
 
 client = Earth(
-    api_key="YOUR_API_KEY",
+    api_key="<value>",
+    environment=EarthEnvironment.PRODUCTION,
 )
+
 client.weather.forecast.hourly(
     latitude=47.6061,
     longitude=-122.3328,
@@ -916,7 +939,7 @@ client.weather.forecast.hourly(
 </details>
 
 ## Weather Experimental
-<details><summary><code>client.weather.experimental.<a href="src/silurian/weather/experimental/client.py">extended</a>(...)</code></summary>
+<details><summary><code>client.weather.experimental.<a href="src/silurian/weather/experimental/client.py">extended</a>(...) -> HourlyWeatherResponse</code></summary>
 <dl>
 <dd>
 
@@ -944,10 +967,13 @@ Get hourly weather forecast for a specific location and time
 
 ```python
 from silurian import Earth
+from silurian.environment import EarthEnvironment
 
 client = Earth(
-    api_key="YOUR_API_KEY",
+    api_key="<value>",
+    environment=EarthEnvironment.PRODUCTION,
 )
+
 client.weather.experimental.extended(
     latitude=47.6061,
     longitude=-122.3328,
@@ -1014,7 +1040,7 @@ client.weather.experimental.extended(
 </details>
 
 ## Weather Experimental Regional
-<details><summary><code>client.weather.experimental.regional.<a href="src/silurian/weather/experimental/regional/client.py">usa</a>(...)</code></summary>
+<details><summary><code>client.weather.experimental.regional.<a href="src/silurian/weather/experimental/regional/client.py">usa</a>(...) -> GftusHourlyWeatherResponse</code></summary>
 <dl>
 <dd>
 
@@ -1042,10 +1068,13 @@ Get hourly weather forecast for a specific location and time
 
 ```python
 from silurian import Earth
+from silurian.environment import EarthEnvironment
 
 client = Earth(
-    api_key="YOUR_API_KEY",
+    api_key="<value>",
+    environment=EarthEnvironment.PRODUCTION,
 )
+
 client.weather.experimental.regional.usa(
     latitude=47.6061,
     longitude=-122.3328,
@@ -1126,10 +1155,13 @@ client.weather.experimental.regional.usa(
 
 ```python
 from silurian import Earth
+from silurian.environment import EarthEnvironment
 
 client = Earth(
-    api_key="YOUR_API_KEY",
+    api_key="<value>",
+    environment=EarthEnvironment.PRODUCTION,
 )
+
 client.weather.experimental.personalized.total_energies()
 
 ```
@@ -1159,7 +1191,7 @@ client.weather.experimental.personalized.total_energies()
 </details>
 
 ## Weather Experimental Past Regional
-<details><summary><code>client.weather.experimental.past.regional.<a href="src/silurian/weather/experimental/past/regional/client.py">usa</a>(...)</code></summary>
+<details><summary><code>client.weather.experimental.past.regional.<a href="src/silurian/weather/experimental/past/regional/client.py">usa</a>(...) -> GftusHourlyWeatherResponse</code></summary>
 <dl>
 <dd>
 
@@ -1186,19 +1218,19 @@ Get hourly weather forecast for a specific location and time
 <dd>
 
 ```python
+from silurian import Earth
+from silurian.environment import EarthEnvironment
 import datetime
 
-from silurian import Earth
-
 client = Earth(
-    api_key="YOUR_API_KEY",
+    api_key="<value>",
+    environment=EarthEnvironment.PRODUCTION,
 )
+
 client.weather.experimental.past.regional.usa(
     latitude=47.6061,
     longitude=-122.3328,
-    time=datetime.datetime.fromisoformat(
-        "2024-01-01 00:00:00+00:00",
-    ),
+    time=datetime.datetime.fromisoformat("2024-01-01T00:00:00+00:00"),
     timezone="local",
     units="metric",
 )
@@ -1233,7 +1265,7 @@ client.weather.experimental.past.regional.usa(
 <dl>
 <dd>
 
-**time:** `dt.datetime` 
+**time:** `datetime.datetime` 
     
 </dd>
 </dl>
@@ -1270,7 +1302,7 @@ client.weather.experimental.past.regional.usa(
 </details>
 
 ## Weather Past Forecast
-<details><summary><code>client.weather.past.forecast.<a href="src/silurian/weather/past/forecast/client.py">daily</a>(...)</code></summary>
+<details><summary><code>client.weather.past.forecast.<a href="src/silurian/weather/past/forecast/client.py">daily</a>(...) -> DailyWeatherResponse</code></summary>
 <dl>
 <dd>
 
@@ -1297,19 +1329,19 @@ Get daily weather forecast for a specific location and time
 <dd>
 
 ```python
+from silurian import Earth
+from silurian.environment import EarthEnvironment
 import datetime
 
-from silurian import Earth
-
 client = Earth(
-    api_key="YOUR_API_KEY",
+    api_key="<value>",
+    environment=EarthEnvironment.PRODUCTION,
 )
+
 client.weather.past.forecast.daily(
     latitude=47.6061,
     longitude=-122.3328,
-    time=datetime.datetime.fromisoformat(
-        "2024-01-01 00:00:00+00:00",
-    ),
+    time=datetime.datetime.fromisoformat("2024-01-01T00:00:00+00:00"),
     timezone="local",
     units="metric",
 )
@@ -1344,7 +1376,7 @@ client.weather.past.forecast.daily(
 <dl>
 <dd>
 
-**time:** `dt.datetime` 
+**time:** `datetime.datetime` 
     
 </dd>
 </dl>
@@ -1380,7 +1412,7 @@ client.weather.past.forecast.daily(
 </dl>
 </details>
 
-<details><summary><code>client.weather.past.forecast.<a href="src/silurian/weather/past/forecast/client.py">hourly</a>(...)</code></summary>
+<details><summary><code>client.weather.past.forecast.<a href="src/silurian/weather/past/forecast/client.py">hourly</a>(...) -> HourlyWeatherResponse</code></summary>
 <dl>
 <dd>
 
@@ -1407,19 +1439,19 @@ Get hourly weather forecast for a specific location and time
 <dd>
 
 ```python
+from silurian import Earth
+from silurian.environment import EarthEnvironment
 import datetime
 
-from silurian import Earth
-
 client = Earth(
-    api_key="YOUR_API_KEY",
+    api_key="<value>",
+    environment=EarthEnvironment.PRODUCTION,
 )
+
 client.weather.past.forecast.hourly(
     latitude=47.6061,
     longitude=-122.3328,
-    time=datetime.datetime.fromisoformat(
-        "2024-01-01 00:00:00+00:00",
-    ),
+    time=datetime.datetime.fromisoformat("2024-01-01T00:00:00+00:00"),
     timezone="local",
     units="metric",
 )
@@ -1454,7 +1486,7 @@ client.weather.past.forecast.hourly(
 <dl>
 <dd>
 
-**time:** `dt.datetime` 
+**time:** `datetime.datetime` 
     
 </dd>
 </dl>

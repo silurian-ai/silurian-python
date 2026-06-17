@@ -2,4 +2,4 @@
 
 import typing
 
-Position3D = typing.List[typing.Optional[typing.Any]]
+Position3D = typing.List[typing.Any]

@@ -8,13 +8,15 @@ from ..core.api_error import ApiError
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.datetime_utils import serialize_datetime
 from ..core.http_response import AsyncHttpResponse, HttpResponse
-from ..core.jsonable_encoder import jsonable_encoder
+from ..core.jsonable_encoder import encode_path_param
+from ..core.parse_error import ParsingError
 from ..core.pydantic_utilities import parse_obj_as
 from ..core.request_options import RequestOptions
 from ..errors.unprocessable_entity_error import UnprocessableEntityError
 from ..types.feature_collection import FeatureCollection
 from ..types.http_validation_error import HttpValidationError
 from ..types.time_series_feature_collection_model import TimeSeriesFeatureCollectionModel
+from pydantic import ValidationError
 
 
 class RawPortfoliosClient:
@@ -55,7 +57,7 @@ class RawPortfoliosClient:
             Successful Response
         """
         _response = self._client_wrapper.httpx_client.request(
-            f"portfolios/{jsonable_encoder(portfolio_id)}/features",
+            f"portfolios/{encode_path_param(portfolio_id)}/features",
             method="GET",
             params={
                 "x": x,
@@ -89,6 +91,10 @@ class RawPortfoliosClient:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     def forecasts(
@@ -122,7 +128,7 @@ class RawPortfoliosClient:
             Successful Response
         """
         _response = self._client_wrapper.httpx_client.request(
-            f"portfolios/{jsonable_encoder(portfolio_id)}/forecasts",
+            f"portfolios/{encode_path_param(portfolio_id)}/forecasts",
             method="GET",
             params={
                 "id": id,
@@ -155,6 +161,10 @@ class RawPortfoliosClient:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     def observations(
@@ -191,7 +201,7 @@ class RawPortfoliosClient:
             Successful Response
         """
         _response = self._client_wrapper.httpx_client.request(
-            f"portfolios/{jsonable_encoder(portfolio_id)}/observations",
+            f"portfolios/{encode_path_param(portfolio_id)}/observations",
             method="GET",
             params={
                 "id": id,
@@ -225,6 +235,10 @@ class RawPortfoliosClient:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     def init_time(
@@ -248,7 +262,7 @@ class RawPortfoliosClient:
             Successful Response
         """
         _response = self._client_wrapper.httpx_client.request(
-            f"portfolios/{jsonable_encoder(portfolio_id)}/init_time",
+            f"portfolios/{encode_path_param(portfolio_id)}/init_time",
             method="GET",
             params={
                 "time": serialize_datetime(time),
@@ -279,6 +293,10 @@ class RawPortfoliosClient:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
 
@@ -320,7 +338,7 @@ class AsyncRawPortfoliosClient:
             Successful Response
         """
         _response = await self._client_wrapper.httpx_client.request(
-            f"portfolios/{jsonable_encoder(portfolio_id)}/features",
+            f"portfolios/{encode_path_param(portfolio_id)}/features",
             method="GET",
             params={
                 "x": x,
@@ -354,6 +372,10 @@ class AsyncRawPortfoliosClient:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     async def forecasts(
@@ -387,7 +409,7 @@ class AsyncRawPortfoliosClient:
             Successful Response
         """
         _response = await self._client_wrapper.httpx_client.request(
-            f"portfolios/{jsonable_encoder(portfolio_id)}/forecasts",
+            f"portfolios/{encode_path_param(portfolio_id)}/forecasts",
             method="GET",
             params={
                 "id": id,
@@ -420,6 +442,10 @@ class AsyncRawPortfoliosClient:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     async def observations(
@@ -456,7 +482,7 @@ class AsyncRawPortfoliosClient:
             Successful Response
         """
         _response = await self._client_wrapper.httpx_client.request(
-            f"portfolios/{jsonable_encoder(portfolio_id)}/observations",
+            f"portfolios/{encode_path_param(portfolio_id)}/observations",
             method="GET",
             params={
                 "id": id,
@@ -490,6 +516,10 @@ class AsyncRawPortfoliosClient:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     async def init_time(
@@ -513,7 +543,7 @@ class AsyncRawPortfoliosClient:
             Successful Response
         """
         _response = await self._client_wrapper.httpx_client.request(
-            f"portfolios/{jsonable_encoder(portfolio_id)}/init_time",
+            f"portfolios/{encode_path_param(portfolio_id)}/init_time",
             method="GET",
             params={
                 "time": serialize_datetime(time),
@@ -544,4 +574,8 @@ class AsyncRawPortfoliosClient:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)

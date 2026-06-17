@@ -22,9 +22,11 @@ class ImperialUnits(UniversalBaseModel):
     dewpoint_temperature: typing.Optional[str] = None
     pressure: typing.Optional[str] = None
     downward_solar_radiation: typing.Optional[str] = None
-    wind_speed_100_m: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="wind_speed_100m")] = None
+    wind_speed_100_m: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="wind_speed_100m"), pydantic.Field(alias="wind_speed_100m")
+    ] = None
     wind_direction_100_m: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="wind_direction_100m")
+        typing.Optional[str], FieldMetadata(alias="wind_direction_100m"), pydantic.Field(alias="wind_direction_100m")
     ] = None
     global_horizontal_irradiation: typing.Optional[str] = None
     direct_normal_irradiation: typing.Optional[str] = None

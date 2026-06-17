@@ -12,7 +12,7 @@ class Point(UniversalBaseModel):
     Point Model
     """
 
-    bbox: typing.Optional[typing.List[typing.Optional[typing.Any]]] = None
+    bbox: typing.Optional[typing.List[typing.Any]] = None
     coordinates: PointCoordinates
 
     if IS_PYDANTIC_V2:

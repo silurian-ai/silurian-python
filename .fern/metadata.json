@@ -1,0 +1,14 @@
+{
+  "cliVersion": "5.49.2",
+  "generatorName": "fernapi/fern-python-sdk",
+  "generatorVersion": "5.14.20",
+  "generatorConfig": {
+    "client_class_name": "Earth"
+  },
+  "originGitCommit": "5e0d6938082036ef1823acfb90217781fe8914fa",
+  "originGitCommitIsDirty": false,
+  "invokedBy": "ci",
+  "requestedVersion": "0.0.19",
+  "ciProvider": "github",
+  "sdkVersion": "0.0.19"
+}

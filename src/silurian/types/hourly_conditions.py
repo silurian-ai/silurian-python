@@ -25,9 +25,11 @@ class HourlyConditions(UniversalBaseModel):
     dewpoint_temperature: typing.Optional[float] = None
     pressure: typing.Optional[float] = None
     downward_solar_radiation: typing.Optional[float] = None
-    wind_speed_100_m: typing_extensions.Annotated[typing.Optional[float], FieldMetadata(alias="wind_speed_100m")] = None
+    wind_speed_100_m: typing_extensions.Annotated[
+        typing.Optional[float], FieldMetadata(alias="wind_speed_100m"), pydantic.Field(alias="wind_speed_100m")
+    ] = None
     wind_direction_100_m: typing_extensions.Annotated[
-        typing.Optional[float], FieldMetadata(alias="wind_direction_100m")
+        typing.Optional[float], FieldMetadata(alias="wind_direction_100m"), pydantic.Field(alias="wind_direction_100m")
     ] = None
     feels_like_temperature: typing.Optional[float] = None
     weather_code: typing.Optional[WeatherCode] = None

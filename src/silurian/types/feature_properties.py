@@ -4,4 +4,4 @@ import typing
 
 from .base_model import BaseModel
 
-FeatureProperties = typing.Union[typing.Dict[str, typing.Optional[typing.Any]], BaseModel]
+FeatureProperties = typing.Union[typing.Dict[str, typing.Any], BaseModel]
