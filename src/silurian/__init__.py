@@ -99,7 +99,6 @@ if typing.TYPE_CHECKING:
     )
     from .errors import InternalServerError, NotFoundError, UnauthorizedError, UnprocessableEntityError
     from . import cyclones, portfolios, weather
-    from ._default_clients import DefaultAioHttpClient, DefaultAsyncHttpxClient
     from .client import AsyncEarth, Earth
     from .environment import EarthEnvironment
     from .version import __version__
@@ -112,8 +111,6 @@ _dynamic_imports: typing.Dict[str, str] = {
     "DailyConditions": ".types",
     "DailyWeatherResponse": ".types",
     "DailyWeatherResponseUnits": ".types",
-    "DefaultAioHttpClient": "._default_clients",
-    "DefaultAsyncHttpxClient": "._default_clients",
     "DetectionPoint": ".types",
     "Distribution": ".types",
     "Earth": ".client",
@@ -239,8 +236,6 @@ __all__ = [
     "DailyConditions",
     "DailyWeatherResponse",
     "DailyWeatherResponseUnits",
-    "DefaultAioHttpClient",
-    "DefaultAsyncHttpxClient",
     "DetectionPoint",
     "Distribution",
     "Earth",

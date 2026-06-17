@@ -8,7 +8,6 @@ from ....core.api_error import ApiError
 from ....core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ....core.datetime_utils import serialize_datetime
 from ....core.http_response import AsyncHttpResponse, HttpResponse
-from ....core.parse_error import ParsingError
 from ....core.pydantic_utilities import parse_obj_as
 from ....core.request_options import RequestOptions
 from ....errors.internal_server_error import InternalServerError
@@ -19,7 +18,6 @@ from ....types.daily_weather_response import DailyWeatherResponse
 from ....types.hourly_weather_response import HourlyWeatherResponse
 from ....types.timezone import Timezone
 from ....types.units import Units
-from pydantic import ValidationError
 
 
 class RawForecastClient:
@@ -128,10 +126,6 @@ class RawForecastClient:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
-        except ValidationError as e:
-            raise ParsingError(
-                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
-            )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     def hourly(
@@ -236,10 +230,6 @@ class RawForecastClient:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
-        except ValidationError as e:
-            raise ParsingError(
-                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
-            )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
 
@@ -349,10 +339,6 @@ class AsyncRawForecastClient:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
-        except ValidationError as e:
-            raise ParsingError(
-                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
-            )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
     async def hourly(
@@ -457,8 +443,4 @@ class AsyncRawForecastClient:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
-        except ValidationError as e:
-            raise ParsingError(
-                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
-            )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
