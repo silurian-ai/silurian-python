@@ -8,7 +8,6 @@ from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from .raw_client import AsyncRawWeatherClient, RawWeatherClient
 
 if typing.TYPE_CHECKING:
-    from .experimental.client import AsyncExperimentalClient, ExperimentalClient
     from .forecast.client import AsyncForecastClient, ForecastClient
     from .past.client import AsyncPastClient, PastClient
 
@@ -18,7 +17,6 @@ class WeatherClient:
         self._raw_client = RawWeatherClient(client_wrapper=client_wrapper)
         self._client_wrapper = client_wrapper
         self._forecast: typing.Optional[ForecastClient] = None
-        self._experimental: typing.Optional[ExperimentalClient] = None
         self._past: typing.Optional[PastClient] = None
 
     @property
@@ -41,14 +39,6 @@ class WeatherClient:
         return self._forecast
 
     @property
-    def experimental(self):
-        if self._experimental is None:
-            from .experimental.client import ExperimentalClient  # noqa: E402
-
-            self._experimental = ExperimentalClient(client_wrapper=self._client_wrapper)
-        return self._experimental
-
-    @property
     def past(self):
         if self._past is None:
             from .past.client import PastClient  # noqa: E402
@@ -62,7 +52,6 @@ class AsyncWeatherClient:
         self._raw_client = AsyncRawWeatherClient(client_wrapper=client_wrapper)
         self._client_wrapper = client_wrapper
         self._forecast: typing.Optional[AsyncForecastClient] = None
-        self._experimental: typing.Optional[AsyncExperimentalClient] = None
         self._past: typing.Optional[AsyncPastClient] = None
 
     @property
@@ -83,14 +72,6 @@ class AsyncWeatherClient:
 
             self._forecast = AsyncForecastClient(client_wrapper=self._client_wrapper)
         return self._forecast
-
-    @property
-    def experimental(self):
-        if self._experimental is None:
-            from .experimental.client import AsyncExperimentalClient  # noqa: E402
-
-            self._experimental = AsyncExperimentalClient(client_wrapper=self._client_wrapper)
-        return self._experimental
 
     @property
     def past(self):

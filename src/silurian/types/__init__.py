@@ -42,9 +42,6 @@ if typing.TYPE_CHECKING:
         GeometryCollectionGeometriesItem_Point,
         GeometryCollectionGeometriesItem_Polygon,
     )
-    from .gftus_base_units import GftusBaseUnits
-    from .gftus_hourly_conditions import GftusHourlyConditions
-    from .gftus_hourly_weather_response import GftusHourlyWeatherResponse
     from .histogram import Histogram
     from .hourly_conditions import HourlyConditions
     from .hourly_weather_response import HourlyWeatherResponse
@@ -134,9 +131,6 @@ _dynamic_imports: typing.Dict[str, str] = {
     "GeometryCollectionGeometriesItem_MultiPolygon": ".geometry_collection_geometries_item",
     "GeometryCollectionGeometriesItem_Point": ".geometry_collection_geometries_item",
     "GeometryCollectionGeometriesItem_Polygon": ".geometry_collection_geometries_item",
-    "GftusBaseUnits": ".gftus_base_units",
-    "GftusHourlyConditions": ".gftus_hourly_conditions",
-    "GftusHourlyWeatherResponse": ".gftus_hourly_weather_response",
     "Histogram": ".histogram",
     "HourlyConditions": ".hourly_conditions",
     "HourlyWeatherResponse": ".hourly_weather_response",
@@ -248,9 +242,6 @@ __all__ = [
     "GeometryCollectionGeometriesItem_MultiPolygon",
     "GeometryCollectionGeometriesItem_Point",
     "GeometryCollectionGeometriesItem_Polygon",
-    "GftusBaseUnits",
-    "GftusHourlyConditions",
-    "GftusHourlyWeatherResponse",
     "Histogram",
     "HourlyConditions",
     "HourlyWeatherResponse",

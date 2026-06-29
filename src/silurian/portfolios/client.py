@@ -66,7 +66,7 @@ class PortfoliosClient:
             api_key="YOUR_API_KEY",
         )
         client.portfolios.features(
-            portfolio_id="portfolio_id",
+            portfolio_id="my-portfolio",
             x=1,
             y=1,
             z=1,
@@ -118,9 +118,9 @@ class PortfoliosClient:
             api_key="YOUR_API_KEY",
         )
         client.portfolios.forecasts(
-            portfolio_id="portfolio_id",
-            id=["id"],
-            variables=["variables"],
+            portfolio_id="my-portfolio",
+            id=["station_A", "station_B"],
+            variables=["temperature", "wind_speed"],
             init_time=datetime.datetime.fromisoformat(
                 "2024-01-15 09:30:00+00:00",
             ),
@@ -174,9 +174,9 @@ class PortfoliosClient:
             api_key="YOUR_API_KEY",
         )
         client.portfolios.observations(
-            portfolio_id="portfolio_id",
-            id=["id"],
-            variables=["variables"],
+            portfolio_id="my-portfolio",
+            id=["station_A", "station_B"],
+            variables=["temperature", "wind_speed"],
             valid_time_start=datetime.datetime.fromisoformat(
                 "2024-01-15 09:30:00+00:00",
             ),
@@ -225,7 +225,7 @@ class PortfoliosClient:
             api_key="YOUR_API_KEY",
         )
         client.portfolios.init_time(
-            portfolio_id="portfolio_id",
+            portfolio_id="my-portfolio",
             time=datetime.datetime.fromisoformat(
                 "2024-01-15 09:30:00+00:00",
             ),
@@ -296,7 +296,7 @@ class AsyncPortfoliosClient:
 
         async def main() -> None:
             await client.portfolios.features(
-                portfolio_id="portfolio_id",
+                portfolio_id="my-portfolio",
                 x=1,
                 y=1,
                 z=1,
@@ -355,9 +355,9 @@ class AsyncPortfoliosClient:
 
         async def main() -> None:
             await client.portfolios.forecasts(
-                portfolio_id="portfolio_id",
-                id=["id"],
-                variables=["variables"],
+                portfolio_id="my-portfolio",
+                id=["station_A", "station_B"],
+                variables=["temperature", "wind_speed"],
                 init_time=datetime.datetime.fromisoformat(
                     "2024-01-15 09:30:00+00:00",
                 ),
@@ -418,9 +418,9 @@ class AsyncPortfoliosClient:
 
         async def main() -> None:
             await client.portfolios.observations(
-                portfolio_id="portfolio_id",
-                id=["id"],
-                variables=["variables"],
+                portfolio_id="my-portfolio",
+                id=["station_A", "station_B"],
+                variables=["temperature", "wind_speed"],
                 valid_time_start=datetime.datetime.fromisoformat(
                     "2024-01-15 09:30:00+00:00",
                 ),
@@ -476,7 +476,7 @@ class AsyncPortfoliosClient:
 
         async def main() -> None:
             await client.portfolios.init_time(
-                portfolio_id="portfolio_id",
+                portfolio_id="my-portfolio",
                 time=datetime.datetime.fromisoformat(
                     "2024-01-15 09:30:00+00:00",
                 ),

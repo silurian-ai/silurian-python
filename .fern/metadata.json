@@ -5,6 +5,6 @@
   "generatorConfig": {
     "client_class_name": "Earth"
   },
-  "originGitCommit": "d1edaba6679cb6c183541ef1416d1e66dfbdde8e",
-  "sdkVersion": "0.0.24"
+  "originGitCommit": "63c1cdb10b86987870529b842cb291059cc429ce",
+  "sdkVersion": "0.1.0"
 }
